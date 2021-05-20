@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.StringTokenizer;
 
 
@@ -14,6 +13,9 @@ public class InputView {
     public static final String TICKETS_NUMBER_VIEW = "개를 구매했습니다.";
     public static final int ONE_LOTTO_TICKET_NUMBER = 6;
     public static final String WINNING_NUMBER_VIEW = "지난 주 당첨 번호를 입력해 주세요.";
+    public static final String BONUS_BALL_VIEW = "보너스 볼을 입력해 주세요.";
+    public static final int LOTTO_START_NUMBER = 1;
+    public static final int LOTTO_FINISH_NUMBER = 45;
 
     public static int moneyInput() throws IOException {
         int lottoMoney = 0;
@@ -75,7 +77,7 @@ public class InputView {
 
     public static void catchWinningNumberLengthException(String winningNumberInput) throws WinningNumberLengthException {
         String[] input = winningNumberInput.split(",");
-        if (input.length != 6) {
+        if (input.length != ONE_LOTTO_TICKET_NUMBER) {
             throw new WinningNumberLengthException();
         }
     }
@@ -84,7 +86,7 @@ public class InputView {
         StringTokenizer st = new StringTokenizer(winningNumberInput, ",");
         while (st.hasMoreTokens()) {
             int number = Integer.parseInt(st.nextToken());
-            if (number < 1 || number > 45) {
+            if (number < LOTTO_START_NUMBER || number > LOTTO_FINISH_NUMBER) {
                 throw new InvalidWinningNumberException();
             }
         }
@@ -95,10 +97,37 @@ public class InputView {
         StringTokenizer st = new StringTokenizer(winningNumberInput, ",");
         while (st.hasMoreTokens()) {
             String number = st.nextToken();
-            list.add(number);
             if (list.contains(number)) {
                 throw new OverlapWinningNumberException();
             }
+            list.add(number);
+        }
+    }
+
+    public static int bonusBallView(ArrayList<Integer> lottoNumbers){
+        int bonusBall = 0;
+        try {
+            System.out.println(BONUS_BALL_VIEW);
+            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+            bonusBall = Integer.parseInt(br.readLine());
+            catchInvalidBonusBallException(bonusBall);
+            catchOverlapBonusBallException(bonusBall,lottoNumbers);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+           bonusBallView(lottoNumbers);
+        }
+        return bonusBall;
+    }
+
+    public static void catchInvalidBonusBallException(int bonusBall) throws InvalidBonusBallException {
+        if(bonusBall < LOTTO_START_NUMBER || bonusBall >LOTTO_FINISH_NUMBER){
+            throw new InvalidBonusBallException();
+        }
+    }
+
+    public static void catchOverlapBonusBallException(int bonusBall, ArrayList<Integer> winningNumbers) throws OverlapBonusBallException {
+        if(winningNumbers.contains(bonusBall)){
+            throw new OverlapBonusBallException();
         }
     }
 }

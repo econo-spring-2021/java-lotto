@@ -3,9 +3,18 @@ package lotto.domain;
 import java.util.ArrayList;
 
 public class WinningNumber {
-    ArrayList<Integer> winningNumbers = new ArrayList<>();
+    private ArrayList<Integer> winningNumbers;
+    private int bonusBall;
 
     public WinningNumber(ArrayList<Integer> winningNumbers) {
         this.winningNumbers = winningNumbers;
+    }
+
+    public void setBonusBall(int bonusBall) {
+        this.bonusBall = bonusBall;
+    }
+
+    public ArrayList<Integer> getWinningNumbers() {
+        return winningNumbers;
     }
 }

@@ -17,7 +17,7 @@ public class Application {
             lottoTickets.add(new LottoTicket(Lotto.setLottoNumbers(Lotto.setOriginalLottoNumbers())));
             InputView.lottoNumbersView(lottoTickets.get(i).getLottoNumbers());
         }
-        WinningNumber winningNumber = new WinningNumber(InputView.winningNumberInput());
-
+        WinningNumber winningNumbers = new WinningNumber(InputView.winningNumberInput());
+        InputView.bonusBallView(winningNumbers.getWinningNumbers());
     }
 }
