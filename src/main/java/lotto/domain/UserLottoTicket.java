@@ -29,7 +29,20 @@ public class UserLottoTicket {
             count += ticket.getOneIfWinningNumberExists(number, winningLotto.getBonusNumber());
         }
 
+        System.out.println(count);
+        if (count == 6) ticket.setResult(LottoResult.FIRST);
         if (count == 5 && ticket.hasBonusNumber(winningLotto.getBonusNumber())) ticket.setResult(LottoResult.SECOND);
-        ticket.setResult(LottoResult.values()[count]);
+        if (count == 5) ticket.setResult(LottoResult.THIRD);
+        if (count == 4) ticket.setResult(LottoResult.FORTH);
+        if (count == 3) ticket.setResult(LottoResult.FIFTH);
+    }
+
+    public int getSpecificResultCount(LottoResult result) {
+        int count = 0;
+        for(LottoTicket ticket : lottoTickets) {
+            count += ticket.getOneIfResult(result);
+        }
+
+        return count;
     }
 }

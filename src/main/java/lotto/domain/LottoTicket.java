@@ -42,4 +42,10 @@ public class LottoTicket {
 
         return false;
     }
+
+    public int getOneIfResult(LottoResult result) {
+        if(this.result == result) return 1;
+
+        return 0;
+    }
 }

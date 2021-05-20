@@ -45,4 +45,8 @@ public class LottoController {
     public void calculateWinning() {
         userLottoTicket.checkLottosResult(winningLotto);
     }
+
+    public void printLottoResult() {
+        OutputView.printLottoResult(userLottoTicket);
+    }
 }

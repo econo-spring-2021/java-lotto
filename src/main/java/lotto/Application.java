@@ -9,5 +9,6 @@ public class Application {
         controller.generateUserLottoTicket();
         controller.getWinningLotto();
         controller.calculateWinning();
+        controller.printLottoResult();
     }
 }
