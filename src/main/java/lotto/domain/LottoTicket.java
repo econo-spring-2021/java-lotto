@@ -5,6 +5,7 @@ import java.util.List;
 
 public class LottoTicket {
     private final List<String> numbers;
+    private LottoResult result;
 
     private static final int LOTTOE_PRICE = 1000;
 
@@ -20,9 +21,25 @@ public class LottoTicket {
         numbers = tempNumbers;
     }
 
-    public List<String> getNumbers() { return numbers; }
-
     public static int getLottoPrice() {
         return LOTTOE_PRICE;
+    }
+
+    public List<String> getNumbers() { return numbers; }
+
+    public void setResult(LottoResult result) {
+        this.result = result;
+    }
+
+    public int getOneIfWinningNumberExists(String winningNumber, String bonusNumber) {
+        if (numbers.contains(winningNumber) && numbers.get(numbers.indexOf(winningNumber)) != bonusNumber) return 1;
+
+        return 0;
+    }
+
+    public boolean hasBonusNumber(String bonusNumber) {
+        if (numbers.contains(bonusNumber)) return true;
+
+        return false;
     }
 }

@@ -41,4 +41,8 @@ public class LottoController {
         LottoTicket ticket = new LottoTicket(inputView.getWinningLottoNumber());
         winningLotto = new WinningLotto(ticket, inputView.getBonusBall());
     }
+
+    public void calculateWinning() {
+        userLottoTicket.checkLottosResult(winningLotto);
+    }
 }
