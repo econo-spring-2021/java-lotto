@@ -11,24 +11,24 @@ import java.util.List;
 
 public class LottoController {
     InputView inputView = new InputView();
-    OutputView outputView = new OutputView();
     UserAccount userAccount;
     UserLottoTicket userLottoTicket;
 
     public void getUserMoney() {
-        outputView.askMoney();
+        OutputView.askMoney();
         userAccount = new UserAccount(inputView.getMoney());
     }
 
     public void generateUserLottoTicket() {
         int lottoCount = getBuyingTickeyCount();
-        outputView.printBuyingLotteCount(lottoCount);
+        OutputView.printBuyingLotteCount(lottoCount);
 
         List<LottoTicket> tickets = new ArrayList<>();
         for (int i = 0; i < lottoCount; i++) {
             tickets.add(new LottoTicket());
         }
         userLottoTicket = new UserLottoTicket(tickets);
+        userLottoTicket.printLottoTickets();
     }
 
     private int getBuyingTickeyCount() {

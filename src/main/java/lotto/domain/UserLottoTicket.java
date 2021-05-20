@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.view.OutputView;
+
 import java.util.List;
 
 public class UserLottoTicket {
@@ -7,5 +9,11 @@ public class UserLottoTicket {
 
     public UserLottoTicket(List<LottoTicket> lottoTickets) {
         this.lottoTickets = lottoTickets;
+    }
+
+    public void printLottoTickets() {
+        for (LottoTicket ticket : lottoTickets) {
+            OutputView.printLottoTicket(ticket);
+        }
     }
 }
