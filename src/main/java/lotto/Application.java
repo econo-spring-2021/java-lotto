@@ -7,5 +7,6 @@ public class Application {
         LottoController controller = new LottoController();
         controller.getUserMoney();
         controller.generateUserLottoTicket();
+        controller.getWinningLotto();
     }
 }
