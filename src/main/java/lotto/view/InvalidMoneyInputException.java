@@ -1,9 +1,9 @@
 package lotto.view;
 
 public class InvalidMoneyInputException extends RuntimeException{
-    public static final String invalidMoneyInput = "구입 금액을 1000원 단위로 입력해주세요.";
+    public static final String INVALID_MONEY_INPUT = "구입 금액을 1000원 단위로 입력해주세요.";
 
     public InvalidMoneyInputException(){
-        super(invalidMoneyInput);
+        super(INVALID_MONEY_INPUT);
     }
 }

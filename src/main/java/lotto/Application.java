@@ -2,6 +2,7 @@ package lotto;
 
 import lotto.controller.Lotto;
 import lotto.domain.LottoTicket;
+import lotto.domain.WinningNumber;
 import lotto.view.InputView;
 
 import java.io.IOException;
@@ -16,6 +17,7 @@ public class Application {
             lottoTickets.add(new LottoTicket(Lotto.setLottoNumbers(Lotto.setOriginalLottoNumbers())));
             InputView.lottoNumbersView(lottoTickets.get(i).getLottoNumbers());
         }
+        WinningNumber winningNumber = new WinningNumber(InputView.winningNumberInput());
 
     }
 }
