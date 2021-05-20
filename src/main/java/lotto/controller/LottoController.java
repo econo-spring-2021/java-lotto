@@ -34,16 +34,19 @@ public class LottoController {
     }
 
     private int getBuyingTickeyCount() {
-        return userAccount.getMoney() / LottoTicket.getLottoPrice();
+        return userAccount.getMoney() / LottoTicket.LOTTO_SELLING_PRICE;
     }
 
     public void getWinningLotto() {
+        OutputView.askWinningLottoNumber();
         LottoTicket ticket = new LottoTicket(inputView.getWinningLottoNumber());
+        OutputView.askBonusNumber();
         winningLotto = new WinningLotto(ticket, inputView.getBonusBall());
     }
 
-    public void calculateWinning() {
+    public void calculateResult() {
         userLottoTicket.checkLottosResult(winningLotto);
+        userAccount.setIncome(userLottoTicket.getTotalPrice());
     }
 
     public void printLottoResult() {

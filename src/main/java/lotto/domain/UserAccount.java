@@ -11,4 +11,8 @@ public class UserAccount {
     public int getMoney() {
         return money;
     }
+
+    public void setIncome(int income) {
+        this.income = income;
+    }
 }

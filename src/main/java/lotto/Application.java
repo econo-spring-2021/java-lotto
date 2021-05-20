@@ -8,7 +8,7 @@ public class Application {
         controller.getUserMoney();
         controller.generateUserLottoTicket();
         controller.getWinningLotto();
-        controller.calculateWinning();
+        controller.calculateResult();
         controller.printLottoResult();
     }
 }

@@ -7,7 +7,12 @@ public class LottoTicket {
     private final List<String> numbers;
     private LottoResult result;
 
-    private static final int LOTTOE_PRICE = 1000;
+    public static final int LOTTO_SELLING_PRICE = 1000;
+    public static final int FIFTH_LOTTO_PRICE = 5000;
+    public static final int FORTH_LOTTO_PRICE = 50000;
+    public static final int THIRD_LOTTO_PRICE = 1500000;
+    public static final int SECOND_LOTTO_PRICE = 30000000;
+    public static final int FIRST_LOTTO_PRICE = 2000000000;
 
     public LottoTicket(List<String> numbers) {
         this.numbers = numbers;
@@ -21,14 +26,14 @@ public class LottoTicket {
         numbers = tempNumbers;
     }
 
-    public static int getLottoPrice() {
-        return LOTTOE_PRICE;
-    }
-
     public List<String> getNumbers() { return numbers; }
 
     public void setResult(LottoResult result) {
         this.result = result;
+    }
+
+    public LottoResult getResult() {
+        return this.result;
     }
 
     public int getOneIfWinningNumberExists(String winningNumber, String bonusNumber) {
