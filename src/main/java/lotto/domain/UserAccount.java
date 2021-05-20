@@ -7,4 +7,8 @@ public class UserAccount {
     public UserAccount(int money) {
         this.money = money;
     }
+
+    public int getMoney() {
+        return money;
+    }
 }
