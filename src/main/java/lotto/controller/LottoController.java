@@ -51,5 +51,6 @@ public class LottoController {
 
     public void printLottoResult() {
         OutputView.printLottoResult(userLottoTicket);
+        OutputView.printIncomeRate(userAccount.getIncomeRate());
     }
 }

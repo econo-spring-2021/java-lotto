@@ -29,7 +29,6 @@ public class UserLottoTicket {
             count += ticket.getOneIfWinningNumberExists(number, winningLotto.getBonusNumber());
         }
 
-        System.out.println(count);
         if (count == 3) ticket.setResult(LottoResult.FIFTH);
         if (count == 4) ticket.setResult(LottoResult.FORTH);
         if (count == 5) ticket.setResult(LottoResult.THIRD);
@@ -37,8 +36,8 @@ public class UserLottoTicket {
         if (count == 6) ticket.setResult(LottoResult.FIRST);
     }
 
-    public int getTotalPrice() {
-        int total = 0;
+    public Long getTotalPrice() {
+        Long total = 0L;
         for (LottoTicket ticket : lottoTickets) {
             total += getLottoPrice(ticket);
         }
@@ -52,6 +51,7 @@ public class UserLottoTicket {
         if (ticket.getResult() == LottoResult.THIRD) return LottoTicket.THIRD_LOTTO_PRICE;
         if (ticket.getResult() == LottoResult.SECOND) return LottoTicket.SECOND_LOTTO_PRICE;
         if (ticket.getResult() == LottoResult.FIRST) return LottoTicket.FIRST_LOTTO_PRICE;
+        return 0;
     }
 
     public int getSpecificResultCount(LottoResult result) {

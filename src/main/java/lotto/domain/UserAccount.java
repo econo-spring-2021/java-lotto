@@ -2,7 +2,7 @@ package lotto.domain;
 
 public class UserAccount {
     private final int money;
-    private int income;
+    private Long income;
 
     public UserAccount(int money) {
         this.money = money;
@@ -12,7 +12,11 @@ public class UserAccount {
         return money;
     }
 
-    public void setIncome(int income) {
+    public void setIncome(Long income) {
         this.income = income;
+    }
+
+    public double getIncomeRate() {
+        return income / (double) (money);
     }
 }
