@@ -17,4 +17,8 @@ public class WinningNumber {
     public ArrayList<Integer> getWinningNumbers() {
         return winningNumbers;
     }
+
+    public boolean isBonusBall(int number){
+        return this.bonusBall == number;
+    }
 }
