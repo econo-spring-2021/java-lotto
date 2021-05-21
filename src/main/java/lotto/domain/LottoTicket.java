@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class LottoTicket {
@@ -10,11 +11,11 @@ public class LottoTicket {
     public static final int LOTTO_NUMBER_LENGTH = 6;
     public static final int LOTTO_SELLING_PRICE = 1000;
 
-    public static final int FIFTH_LOTTO_PRICE = 5000;
-    public static final int FORTH_LOTTO_PRICE = 50000;
-    public static final int THIRD_LOTTO_PRICE = 1500000;
-    public static final int SECOND_LOTTO_PRICE = 30000000;
-    public static final int FIRST_LOTTO_PRICE = 2000000000;
+    public static final Long FIFTH_LOTTO_PRICE = 5000L;
+    public static final Long FORTH_LOTTO_PRICE = 50000L;
+    public static final Long THIRD_LOTTO_PRICE = 1500000L;
+    public static final Long SECOND_LOTTO_PRICE = 30000000L;
+    public static final Long FIRST_LOTTO_PRICE = 2000000000L;
 
     public LottoTicket(List<String> numbers) {
         this.numbers = numbers;
@@ -22,10 +23,12 @@ public class LottoTicket {
 
     public LottoTicket() {
         List<String> tempNumbers = new ArrayList<>();
-        for(int i = 0; i < 6; i++) {
-            tempNumbers.add(Integer.toString((int) (Math.random() * 46)));
+        for(int i = 1; i <= 45; i++) {
+            tempNumbers.add(Integer.toString(i));
         }
-        numbers = tempNumbers;
+        Collections.shuffle(tempNumbers);
+
+        numbers = tempNumbers.subList(0, 6);
     }
 
     public List<String> getNumbers() { return numbers; }
@@ -37,6 +40,8 @@ public class LottoTicket {
     public LottoResult getResult() {
         return this.result;
     }
+
+
 
     public int getOneIfWinningNumberExists(String winningNumber, String bonusNumber) {
         if (numbers.contains(winningNumber) && numbers.get(numbers.indexOf(winningNumber)) != bonusNumber) return 1;

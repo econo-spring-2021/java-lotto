@@ -1,14 +1,14 @@
 package lotto.domain;
 
 public class UserAccount {
-    private final int money;
+    private final Long money;
     private Long income;
 
-    public UserAccount(int money) {
+    public UserAccount(Long money) {
         this.money = money;
     }
 
-    public int getMoney() {
+    public Long getMoney() {
         return money;
     }
 

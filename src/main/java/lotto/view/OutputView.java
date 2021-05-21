@@ -25,7 +25,7 @@ public class OutputView {
         System.out.println(ASKING_MONEY_MESSAGE);
     }
 
-    public static void printBuyingLotteCount(int count) {
+    public static void printBuyingLotteCount(long count) {
         System.out.println(count + BUYINGLOTTE_COUNT_MESSAGE);
     }
 

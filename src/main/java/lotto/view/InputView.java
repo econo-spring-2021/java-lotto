@@ -1,30 +1,25 @@
 package lotto.view;
 
-import lotto.domain.LottoTicket;
-
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
 public class InputView {
-    private Scanner scanner = new Scanner(System.in);
     private ExceptionView exceptionView = new ExceptionView();
 
-    public int getMoney() {
+    public Long getMoney(Scanner scanner) {
         try {
             String input = arrangeInput(scanner.nextLine());
             exceptionView.catchNotDigitInput(input);
 
-            return Integer.parseInt(input);
+            return Long.parseLong(input);
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());
-
-            return getMoney();
+            throw e;
         }
     }
 
-    public List<String> getWinningLottoNumber() {
+    public List<String> getWinningLottoNumbers(Scanner scanner) {
         try {
             String input = arrangeInput(scanner.nextLine());
 
@@ -35,21 +30,19 @@ public class InputView {
             return inputList;
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());
-
-            return getWinningLottoNumber();
+            throw e;
         }
     }
 
-    public String getBonusBall() {
+    public String getBonusBall(Scanner scanner) {
         try {
             String input = arrangeInput(scanner.nextLine());
             exceptionView.catchNotDigitInput(input);
 
             return input;
-        } catch (RuntimeException e) {
+        } catch (NotProperArgumentException e) {
             System.out.println(e.getMessage());
-
-            return getBonusBall();
+            throw e;
         }
     }
 

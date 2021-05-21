@@ -45,13 +45,13 @@ public class UserLottoTicket {
         return total;
     }
 
-    private int getLottoPrice(LottoTicket ticket) {
+    private Long getLottoPrice(LottoTicket ticket) {
         if (ticket.getResult() == LottoResult.FIFTH) return LottoTicket.FIFTH_LOTTO_PRICE;
         if (ticket.getResult() == LottoResult.FORTH) return LottoTicket.FORTH_LOTTO_PRICE;
         if (ticket.getResult() == LottoResult.THIRD) return LottoTicket.THIRD_LOTTO_PRICE;
         if (ticket.getResult() == LottoResult.SECOND) return LottoTicket.SECOND_LOTTO_PRICE;
         if (ticket.getResult() == LottoResult.FIRST) return LottoTicket.FIRST_LOTTO_PRICE;
-        return 0;
+        return 0L;
     }
 
     public int getSpecificResultCount(LottoResult result) {
