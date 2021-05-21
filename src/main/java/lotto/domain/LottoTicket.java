@@ -20,12 +20,16 @@ public class LottoTicket {
         return lottoNumbers;
     }
 
-    public void setBonusball(boolean bonusBall) {
-        isBonusball = bonusBall;
+    public boolean isBonusball() {
+        return isBonusball;
     }
 
     public int getMatchCount() {
         return matchCount;
+    }
+
+    public void setBonusball(boolean bonusBall) {
+        isBonusball = bonusBall;
     }
 
     public Rank checkMatchCount() {

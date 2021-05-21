@@ -18,7 +18,7 @@ public class WinningNumber {
         return winningNumbers;
     }
 
-    public boolean isBonusBall(int number){
+    public boolean isBonusBall(int number) {
         return this.bonusBall == number;
     }
 }

@@ -9,10 +9,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class Lotto {
+    public static final int LOTTO_START_NUMBER = 1;
+    public static final int LOTTO_FINISH_NUMBER = 45;
+    public static final int ONE_LOTTO_TICKET_NUMBER = 6;
 
     public static ArrayList<Integer> setOriginalLottoNumbers() {
         ArrayList<Integer> originalLottoNumbers = new ArrayList<>();
-        for (int i = 1; i <= 45; i++) {
+        for (int i = LOTTO_START_NUMBER; i <= LOTTO_FINISH_NUMBER; i++) {
             originalLottoNumbers.add(i);
         }
         Collections.shuffle(originalLottoNumbers);
@@ -21,7 +24,7 @@ public class Lotto {
 
     public static ArrayList<Integer> setLottoNumbers(ArrayList<Integer> originalLottoNumbers) {
         ArrayList<Integer> lottoNumbers = new ArrayList<>();
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < ONE_LOTTO_TICKET_NUMBER; i++) {
             lottoNumbers.add(originalLottoNumbers.get(i));
         }
         Collections.sort(lottoNumbers);

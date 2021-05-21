@@ -5,7 +5,7 @@ import java.util.HashMap;
 public class Calculation {
     private final HashMap<Rank, Integer> results = new HashMap<>();
 
-    public void initResults(){
+    public void initResults() {
         results.put(Rank.FIFTH, 0);
         results.put(Rank.FOURTH, 0);
         results.put(Rank.THIRD, 0);
@@ -17,14 +17,14 @@ public class Calculation {
         return results;
     }
 
-    public void setResults(Rank rank){
-        results.put(rank, results.getOrDefault(rank,0)+1);
+    public void setResults(Rank rank) {
+        results.put(rank, results.getOrDefault(rank, 0) + 1);
     }
 
-    public double getBenefitPercent(int money){
+    public double getBenefitPercent(int money) {
         double sum = 0;
-        for(Rank rank:Rank.values()){
-            if(results.get(rank) != null){
+        for (Rank rank : Rank.values()) {
+            if (results.get(rank) != null) {
                 sum += results.get(rank) * rank.getMoney();
             }
         }

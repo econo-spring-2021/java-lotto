@@ -104,29 +104,29 @@ public class InputView {
         }
     }
 
-    public static int bonusBallView(ArrayList<Integer> lottoNumbers){
+    public static int bonusBallView(ArrayList<Integer> lottoNumbers) {
         int bonusBall = 0;
         try {
             System.out.println(BONUS_BALL_VIEW);
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
             bonusBall = Integer.parseInt(br.readLine());
             catchInvalidBonusBallException(bonusBall);
-            catchOverlapBonusBallException(bonusBall,lottoNumbers);
+            catchOverlapBonusBallException(bonusBall, lottoNumbers);
         } catch (Exception e) {
             System.out.println(e.getMessage());
-           bonusBallView(lottoNumbers);
+            bonusBallView(lottoNumbers);
         }
         return bonusBall;
     }
 
     public static void catchInvalidBonusBallException(int bonusBall) throws InvalidBonusBallException {
-        if(bonusBall < LOTTO_START_NUMBER || bonusBall >LOTTO_FINISH_NUMBER){
+        if (bonusBall < LOTTO_START_NUMBER || bonusBall > LOTTO_FINISH_NUMBER) {
             throw new InvalidBonusBallException();
         }
     }
 
     public static void catchOverlapBonusBallException(int bonusBall, ArrayList<Integer> winningNumbers) throws OverlapBonusBallException {
-        if(winningNumbers.contains(bonusBall)){
+        if (winningNumbers.contains(bonusBall)) {
             throw new OverlapBonusBallException();
         }
     }
