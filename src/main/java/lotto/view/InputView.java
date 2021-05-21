@@ -1,5 +1,7 @@
 package lotto.view;
 
+import lotto.domain.LottoTicket;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -7,19 +9,51 @@ import java.util.Scanner;
 
 public class InputView {
     private Scanner scanner = new Scanner(System.in);
+    private ExceptionView exceptionView = new ExceptionView();
 
     public int getMoney() {
-        String input = scanner.nextLine();
-        return Integer.parseInt(input);
+        try {
+            String input = arrangeInput(scanner.nextLine());
+            exceptionView.catchNotDigitInput(input);
+
+            return Integer.parseInt(input);
+        } catch (RuntimeException e) {
+            System.out.println(e.getMessage());
+
+            return getMoney();
+        }
     }
 
     public List<String> getWinningLottoNumber() {
-        String input = scanner.nextLine().replaceAll(" ", "");
-        return Arrays.asList(input.split(","));
+        try {
+            String input = arrangeInput(scanner.nextLine());
+
+            List<String> inputList = Arrays.asList(input.split(","));
+            exceptionView.catchNotDigitElement(inputList);
+            exceptionView.catchNotProperCountOfNumber(inputList);
+
+            return inputList;
+        } catch (RuntimeException e) {
+            System.out.println(e.getMessage());
+
+            return getWinningLottoNumber();
+        }
     }
 
     public String getBonusBall() {
-        String input = scanner.nextLine().replaceAll(" ", "");
-        return input;
+        try {
+            String input = arrangeInput(scanner.nextLine());
+            exceptionView.catchNotDigitInput(input);
+
+            return input;
+        } catch (RuntimeException e) {
+            System.out.println(e.getMessage());
+
+            return getBonusBall();
+        }
+    }
+
+    private String arrangeInput(String input) {
+        return input.replaceAll(" ", "");
     }
 }

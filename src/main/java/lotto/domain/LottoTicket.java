@@ -7,7 +7,9 @@ public class LottoTicket {
     private final List<String> numbers;
     private LottoResult result;
 
+    public static final int LOTTO_NUMBER_LENGTH = 6;
     public static final int LOTTO_SELLING_PRICE = 1000;
+
     public static final int FIFTH_LOTTO_PRICE = 5000;
     public static final int FORTH_LOTTO_PRICE = 50000;
     public static final int THIRD_LOTTO_PRICE = 1500000;
