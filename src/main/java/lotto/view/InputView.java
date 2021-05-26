@@ -1,52 +1,53 @@
 package lotto.view;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class InputView {
-    private ExceptionView exceptionView = new ExceptionView();
+    private static Scanner scanner = new Scanner(System.in);
 
-    public Long getMoney(Scanner scanner) {
+    public static Long getMoney() {
         try {
             String input = arrangeInput(scanner.nextLine());
-            exceptionView.catchNotDigitInput(input);
-
             return Long.parseLong(input);
-        } catch (RuntimeException e) {
+        } catch (Exception e) {
             System.out.println(e.getMessage());
-            throw e;
+
+            return getMoney();
         }
     }
 
-    public List<String> getWinningLottoNumbers(Scanner scanner) {
+    public static List<Integer> getWinningLottoNumbers( ) {
         try {
             String input = arrangeInput(scanner.nextLine());
 
-            List<String> inputList = Arrays.asList(input.split(","));
-            exceptionView.catchNotDigitElement(inputList);
-            exceptionView.catchNotProperCountOfNumber(inputList);
+            String[] splitedInputs = input.split(",");
+            List<Integer> splitedNumberInputs = new ArrayList<>();
+            for(String splitedInput : splitedInputs) {
+                splitedNumberInputs.add(Integer.parseInt(input));
+            }
 
-            return inputList;
-        } catch (RuntimeException e) {
+            return splitedNumberInputs;
+        } catch (Exception e) {
             System.out.println(e.getMessage());
-            throw e;
+
+            return getWinningLottoNumbers();
         }
     }
 
-    public String getBonusBall(Scanner scanner) {
+    public static Integer getBonusBall( ) {
         try {
             String input = arrangeInput(scanner.nextLine());
-            exceptionView.catchNotDigitInput(input);
-
-            return input;
-        } catch (NotProperArgumentException e) {
+            return Integer.parseInt(input);
+        } catch (Exception e) {
             System.out.println(e.getMessage());
-            throw e;
+
+            return getBonusBall();
         }
     }
 
-    private String arrangeInput(String input) {
+    private static String arrangeInput(String input) {
         return input.replaceAll(" ", "");
     }
 }

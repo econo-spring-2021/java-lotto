@@ -11,30 +11,16 @@ public class UserLottoTicket {
         this.lottoTickets = lottoTickets;
     }
 
-    public void printLottoTickets() {
+    public UserLottoTicketDto getDto() {
+        return new UserLottoTicketDto(lottoTickets);
+    }
+
+    public void setLottosResult(WinningLotto winningLotto) {
         for (LottoTicket ticket : lottoTickets) {
-            OutputView.printLottoTicket(ticket);
+            ticket.setLottoResult(winningLotto);
         }
     }
-
-    public void checkLottosResult(WinningLotto winningLotto) {
-        for (LottoTicket ticket : lottoTickets) {
-            checkLottoResult(ticket, winningLotto);
-        }
-    }
-
-    private void checkLottoResult(LottoTicket ticket, WinningLotto winningLotto) {
-        int count = 0;
-        for (String number : winningLotto.getNumbers()) {
-            count += ticket.getOneIfWinningNumberExists(number, winningLotto.getBonusNumber());
-        }
-
-        if (count == 3) ticket.setResult(LottoResult.FIFTH);
-        if (count == 4) ticket.setResult(LottoResult.FORTH);
-        if (count == 5) ticket.setResult(LottoResult.THIRD);
-        if (count == 5 && ticket.hasBonusNumber(winningLotto.getBonusNumber())) ticket.setResult(LottoResult.SECOND);
-        if (count == 6) ticket.setResult(LottoResult.FIRST);
-    }
+    
 
     public Long getTotalPrice() {
         Long total = 0L;
@@ -46,11 +32,11 @@ public class UserLottoTicket {
     }
 
     private Long getLottoPrice(LottoTicket ticket) {
-        if (ticket.getResult() == LottoResult.FIFTH) return LottoTicket.FIFTH_LOTTO_PRICE;
-        if (ticket.getResult() == LottoResult.FORTH) return LottoTicket.FORTH_LOTTO_PRICE;
-        if (ticket.getResult() == LottoResult.THIRD) return LottoTicket.THIRD_LOTTO_PRICE;
-        if (ticket.getResult() == LottoResult.SECOND) return LottoTicket.SECOND_LOTTO_PRICE;
-        if (ticket.getResult() == LottoResult.FIRST) return LottoTicket.FIRST_LOTTO_PRICE;
+        if (ticket.getResult() == LottoResult.FIFTH) return LottoResult.FIFTH_LOTTO_PRICE;
+        if (ticket.getResult() == LottoResult.FORTH) return LottoResult.FORTH_LOTTO_PRICE;
+        if (ticket.getResult() == LottoResult.THIRD) return LottoResult.THIRD_LOTTO_PRICE;
+        if (ticket.getResult() == LottoResult.SECOND) return LottoResult.SECOND_LOTTO_PRICE;
+        if (ticket.getResult() == LottoResult.FIRST) return LottoResult.FIRST_LOTTO_PRICE;
         return 0L;
     }
 

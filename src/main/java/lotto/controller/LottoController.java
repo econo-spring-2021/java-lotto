@@ -12,7 +12,6 @@ import java.util.List;
 import java.util.Scanner;
 
 public class LottoController {
-    private InputView inputView = new InputView();
     private Scanner scanner = new Scanner(System.in);
     private UserAccount userAccount;
     private UserLottoTicket userLottoTicket;
@@ -20,7 +19,7 @@ public class LottoController {
 
     public void getUserMoney() {
         OutputView.askMoney();
-        userAccount = new UserAccount(inputView.getMoney(scanner));
+        userAccount = new UserAccount(InputView.getMoney());
     }
 
     public void generateUserLottoTicket() {
@@ -32,7 +31,7 @@ public class LottoController {
             tickets.add(new LottoTicket());
         }
         userLottoTicket = new UserLottoTicket(tickets);
-        userLottoTicket.printLottoTickets();
+        OutputView.printUserLottoTicket(userLottoTicket.getDto());
     }
 
     private long getBuyingTickeyCount() {
@@ -41,13 +40,13 @@ public class LottoController {
 
     public void getWinningLotto() {
         OutputView.askWinningLottoNumber();
-        LottoTicket ticket = new LottoTicket(inputView.getWinningLottoNumbers(scanner));
+        LottoTicket ticket = new LottoTicket(InputView.getWinningLottoNumbers());
         OutputView.askBonusNumber();
-        winningLotto = new WinningLotto(ticket, inputView.getBonusBall(scanner));
+        winningLotto = new WinningLotto(ticket, InputView.getBonusBall());
     }
 
     public void calculateResult() {
-        userLottoTicket.checkLottosResult(winningLotto);
+        userLottoTicket.setLottosResult(winningLotto);
         userAccount.setIncome(userLottoTicket.getTotalPrice());
     }
 
