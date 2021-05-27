@@ -23,7 +23,7 @@ public class LottoTest {
 
     @Test
     public void ticketsNumberTest() {
-        assertThat(5).isEqualTo(InputView.ticketsNumberView(lottoMoney));
+        assertThat(Lotto.getAutomaticTickets(lottoMoney,1)).isEqualTo(4);
     }
 
     @BeforeAll
@@ -51,31 +51,31 @@ public class LottoTest {
     @Test
     public void LottoOneTicketMatchCountTest() {
         Lotto.checkOneLottoTicketMatchCount(lottoTickets.get(0), winningNumbers);
-        assertThat(5).isEqualTo(lottoTickets.get(0).getMatchCount());
-        assertThat(true).isEqualTo(lottoTickets.get(0).isBonusball());
+        assertThat(lottoTickets.get(0).getMatchCount()).isEqualTo(5);
+        assertThat(lottoTickets.get(0).isBonusball()).isEqualTo(true);
     }
 
     @Test
     public void LottoTicketsMatchCountTest() {
         for (int i = 1; i < lottoTickets.size(); i++) {
-            assertThat(0).isEqualTo(lottoTickets.get(i).getMatchCount());
-            assertThat(false).isEqualTo(lottoTickets.get(i).isBonusball());
+            assertThat(lottoTickets.get(i).getMatchCount()).isEqualTo(0);
+            assertThat(lottoTickets.get(i).isBonusball()).isEqualTo(false);
         }
     }
 
     @Test
     public void LottoTicketCheckMatchCountTest() {
-        assertThat(Rank.SECOND).isEqualTo(lottoTickets.get(0).checkMatchCount());
+        assertThat(lottoTickets.get(0).checkMatchCount()).isEqualTo(Rank.SECOND);
     }
 
     @Test
     public void CalculationSetResultTest() {
-        assertThat(1).isEqualTo(calculation.getResults().get(Rank.SECOND));
+        assertThat(calculation.getResults().get(Rank.SECOND)).isEqualTo(1);
     }
 
     @Test
     public void CalculationBenefitPercentTest() {
-        assertThat(600.0).isEqualTo(calculation.getBenefitPercent(lottoMoney));
+        assertThat(calculation.getBenefitPercent(lottoMoney)).isEqualTo(600.0);
     }
 
 }

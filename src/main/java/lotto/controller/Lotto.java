@@ -12,7 +12,11 @@ public class Lotto {
     public static final int LOTTO_START_NUMBER = 1;
     public static final int LOTTO_FINISH_NUMBER = 45;
     public static final int ONE_LOTTO_TICKET_NUMBER = 6;
+    public static final int LOTTO_PRICE = 1000;
 
+    public static int getAutomaticTickets(int lottoMoney, int manualTickets){
+        return lottoMoney / LOTTO_PRICE - manualTickets;
+    }
     public static ArrayList<Integer> setOriginalLottoNumbers() {
         ArrayList<Integer> originalLottoNumbers = new ArrayList<>();
         for (int i = LOTTO_START_NUMBER; i <= LOTTO_FINISH_NUMBER; i++) {
@@ -31,19 +35,19 @@ public class Lotto {
         return lottoNumbers;
     }
 
-    public static void checkLottoTicketsMatchCount(ArrayList<LottoTicket> lottoTickets, WinningNumber winningNumbers){
+    public static void checkLottoTicketsMatchCount(ArrayList<LottoTicket> lottoTickets, WinningNumber winningNumber){
         for(int i=0; i<lottoTickets.size();i++){
-            checkOneLottoTicketMatchCount(lottoTickets.get(i),winningNumbers);
+            checkOneLottoTicketMatchCount(lottoTickets.get(i),winningNumber);
         }
     }
-    public static void checkOneLottoTicketMatchCount(LottoTicket lottoTicket, WinningNumber winningNumbers){
+    public static void checkOneLottoTicketMatchCount(LottoTicket lottoTicket, WinningNumber winningNumber){
         int count = 0;
         ArrayList<Integer> lottoNumbers = lottoTicket.getLottoNumbers();
         for(int number : lottoNumbers){
-            if(winningNumbers.getWinningNumbers().contains(number)){
+            if(winningNumber.getWinningNumbers().contains(number)){
                 count++;
             }
-            if(winningNumbers.isBonusBall(number)){
+            if(winningNumber.isBonusBall(number)){
                 lottoTicket.setBonusball(true);
             }
         }

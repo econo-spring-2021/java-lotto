@@ -3,11 +3,16 @@ package lotto.domain;
 import java.util.ArrayList;
 
 public class WinningNumber {
-    private ArrayList<Integer> winningNumbers;
+    private ArrayList<Integer> winningNumber;
     private int bonusBall;
 
-    public WinningNumber(ArrayList<Integer> winningNumbers) {
-        this.winningNumbers = winningNumbers;
+    public WinningNumber(ArrayList<Integer> winningNumber) {
+        this.winningNumber = winningNumber;
+    }
+
+    public WinningNumber(ArrayList<Integer> winningNumber, int bonusBall) {
+        this.winningNumber = winningNumber;
+        this.bonusBall = bonusBall;
     }
 
     public void setBonusBall(int bonusBall) {
@@ -15,7 +20,7 @@ public class WinningNumber {
     }
 
     public ArrayList<Integer> getWinningNumbers() {
-        return winningNumbers;
+        return winningNumber;
     }
 
     public boolean isBonusBall(int number) {
