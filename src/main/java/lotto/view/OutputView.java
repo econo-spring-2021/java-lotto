@@ -2,15 +2,18 @@ package lotto.view;
 
 import lotto.domain.LottoResult;
 import lotto.domain.LottoTicket;
-import lotto.domain.UserLottoTicket;
-import lotto.domain.UserLottoTicketDto;
+import lotto.domain.UserLottoTickets;
+import lotto.domain.UserLottoTicketsDto;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class OutputView {
 
     private static final String ASKING_MONEY_MESSAGE = "구입금액을 입력해 주세요.";
-    private static final String BUYINGLOTTE_COUNT_MESSAGE = "개를 구매했습니다.";
+    private static final String ASKING_MANUAL_LOTTO_COUNT_MESSAGE = "수동으로 구매할 로또 수를 입력해 주세요.";
+    private static final String ASKING_MANUAL_LOTTO_NUMBER_MESSAGE = "수동으로 구매할 로또 번호를를 입력해 주세요.";
+    private static final String USER_LOTTE_COUNT_MESSAGE = "수동으로 %d장, 자동으로 %d장을 구매했습니다.\n";
 
     private static final String ASKING_WINNING_LOTTO_NUMBER_MESSAGE = "지난 주 당첨 번호를 입력해주세요.";
     private static final String ASKING_BONUS_NUMBER_MESSAGE = "보너스 볼을 입력해 주세요.";
@@ -21,30 +24,29 @@ public class OutputView {
     private static final String SECOND_LOTTO_MESSAGE = "5개 일치, 보너스 볼 일 (" + LottoResult.SECOND_LOTTO_PRICE + "원)- ";
     private static final String FIRST_LOTTO_MESSAGE = "6개 일치 (" + LottoResult.FIRST_LOTTO_PRICE + "원)- ";
 
-    private static final String ICOME_RATE_FRONT_MESSAGE = "총 수익률은 ";
-    private static final String ICOME_RATE_BACK_MESSAGE = "입니다";
+    private static final String INCOME_RATE_FORMAT_MESSAGE = "총 수익률은 %f입니다.\n";
 
 
-    public static void askMoney() {
+    public static void askUserMoney() {
         System.out.println(ASKING_MONEY_MESSAGE);
     }
 
-    public static void printBuyingLotteCount(long count) {
-        System.out.println(count + BUYINGLOTTE_COUNT_MESSAGE);
+    public static void askManualLottoCount() { System.out.println(ASKING_MANUAL_LOTTO_COUNT_MESSAGE);}
+
+    public static void askManualLottoNumber() {
+        System.out.println(ASKING_MANUAL_LOTTO_NUMBER_MESSAGE);
     }
 
-    public static void printUserLottoTicket(UserLottoTicketDto userLottoTicketDto) {
-        for (LottoTicket ticket : userLottoTicketDto.getLottoTickets()) {
+    public static void printUserLottoTicket(int manualLottoCount, int automaticLottoCount,
+                                            UserLottoTicketsDto userLottoTicketsDto) {
+        System.out.printf(USER_LOTTE_COUNT_MESSAGE, manualLottoCount, automaticLottoCount);
+        for (LottoTicket ticket : userLottoTicketsDto.getLottoTickets()) {
             printLottoTicket(ticket.getNumbers());
         }
     }
 
     public static void printLottoTicket(List<Integer> numbers) {
-        System.out.print("[");
-        for(int number : numbers) {
-            System.out.print(number + ", ");
-        }
-        System.out.println("]");
+        System.out.println("[" + numbers.stream().map(String::valueOf).collect(Collectors.joining(",")) + "]");
     }
 
     public static void askWinningLottoNumber() {
@@ -55,7 +57,7 @@ public class OutputView {
         System.out.println(ASKING_BONUS_NUMBER_MESSAGE);
     }
 
-    public static void printLottoResult(UserLottoTicket tickets) {
+    public static void printLottoResult(UserLottoTickets tickets) {
         System.out.print(FIFTH_LOTTO_MESSAGE);
         System.out.println(tickets.getSpecificResultCount(LottoResult.FIFTH));
 
@@ -73,6 +75,6 @@ public class OutputView {
     }
 
     public static void printIncomeRate(double rate) {
-        System.out.println(ICOME_RATE_FRONT_MESSAGE + rate + ICOME_RATE_BACK_MESSAGE);
+        System.out.printf(INCOME_RATE_FORMAT_MESSAGE, rate);
     }
 }

@@ -7,36 +7,55 @@ import java.util.Scanner;
 public class InputView {
     private static Scanner scanner = new Scanner(System.in);
 
-    public static Long getMoney() {
+    public static Long getUserMoney() {
         try {
             String input = arrangeInput(scanner.nextLine());
+
             return Long.parseLong(input);
         } catch (Exception e) {
             System.out.println(e.getMessage());
 
-            return getMoney();
+            return getUserMoney();
         }
     }
 
-    public static List<Integer> getWinningLottoNumbers( ) {
+    public static int getManualLottoCount() {
         try {
             String input = arrangeInput(scanner.nextLine());
 
-            String[] splitedInputs = input.split(",");
+            return Integer.parseInt(input);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+
+            return getManualLottoCount();
+        }
+    }
+
+    public static List<Integer> getLotto() {
+        String input = arrangeInput(scanner.nextLine());
+//        String input = scanner.nextLine();
+
+        return splitLottoString(input);
+    }
+
+    public static List<Integer> splitLottoString(String str) {
+        try {
+            String[] splitedInputs = str.split(",");
             List<Integer> splitedNumberInputs = new ArrayList<>();
-            for(String splitedInput : splitedInputs) {
-                splitedNumberInputs.add(Integer.parseInt(input));
+            for (String splitedInput : splitedInputs) {
+                splitedNumberInputs.add(Integer.parseInt(splitedInput));
             }
 
             return splitedNumberInputs;
         } catch (Exception e) {
             System.out.println(e.getMessage());
+            System.out.println(e);
 
-            return getWinningLottoNumbers();
+            return getLotto();
         }
     }
 
-    public static Integer getBonusBall( ) {
+    public static Integer getBonusBall() {
         try {
             String input = arrangeInput(scanner.nextLine());
             return Integer.parseInt(input);

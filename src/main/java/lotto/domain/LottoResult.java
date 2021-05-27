@@ -1,7 +1,7 @@
 package lotto.domain;
 
 public enum LottoResult {
-    FIRST(6), SECOND(7), THIRD(5), FORTH(4), FIFTH(3);
+    FIRST(6), SECOND(7), THIRD(5), FORTH(4), FIFTH(3), NONE(2);
 
     public static final Long FIFTH_LOTTO_PRICE = 5000L;
     public static final Long FORTH_LOTTO_PRICE = 50000L;
@@ -25,6 +25,7 @@ public enum LottoResult {
         if (count == 4) return LottoResult.FORTH;
         if (count == 5 && ticket.hasBonusNumber(winningLotto.getBonusNumber())) return LottoResult.SECOND;
         if (count == 5) return LottoResult.THIRD;
-        return LottoResult.FIRST;
+        if (count == 6) return LottoResult.FIRST;
+        return LottoResult.NONE;
     }
 }

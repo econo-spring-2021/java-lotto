@@ -1,18 +1,16 @@
 package lotto.domain;
-
-import lotto.view.OutputView;
-
+import java.util.ArrayList;
 import java.util.List;
 
-public class UserLottoTicket {
-    private final List<LottoTicket> lottoTickets;
+public class UserLottoTickets {
+    private List<LottoTicket> lottoTickets = new ArrayList<>();
 
-    public UserLottoTicket(List<LottoTicket> lottoTickets) {
-        this.lottoTickets = lottoTickets;
+    public void addLottoTicket(LottoTicket lottoTicket) {
+        lottoTickets.add(lottoTicket);
     }
 
-    public UserLottoTicketDto getDto() {
-        return new UserLottoTicketDto(lottoTickets);
+    public UserLottoTicketsDto getDto() {
+        return new UserLottoTicketsDto(lottoTickets);
     }
 
     public void setLottosResult(WinningLotto winningLotto) {
@@ -20,7 +18,6 @@ public class UserLottoTicket {
             ticket.setLottoResult(winningLotto);
         }
     }
-    
 
     public Long getTotalPrice() {
         Long total = 0L;
