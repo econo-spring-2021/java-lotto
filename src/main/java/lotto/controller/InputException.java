@@ -20,7 +20,6 @@ public class InputException {
             lottoMoney = InputView.moneyInput();
         }
         return lottoMoney;
-
     }
 
     public static void catchInvalidMoneyInputException(int lottoMoney) throws IOException {

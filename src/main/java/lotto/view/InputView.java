@@ -1,5 +1,7 @@
 package lotto.view;
 
+import lotto.domain.LottoTicket;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -56,6 +58,11 @@ public class InputView {
         System.out.println(TICKETS_COUNT_VIEW1 + manualTickets + TICKETS_COUNT_VIEW2 + automaticTickets + TICKETS_COUNT_VIEW3);
     }
 
+    public static void lottoTicketsNumbersView(ArrayList<LottoTicket> lottoTickets){
+        for(int i=0;i<lottoTickets.size();i++){
+            lottoNumbersView(lottoTickets.get(i).getLottoNumbers());
+        }
+    }
     public static void lottoNumbersView(ArrayList<Integer> lottoNumbers) {
         StringBuilder sb = new StringBuilder();
         sb.append("[");

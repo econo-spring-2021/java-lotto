@@ -10,7 +10,6 @@ import lotto.view.OutputView;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class Application {
     public static void main(String[] args) throws IOException {
@@ -30,14 +29,13 @@ public class Application {
 
         int automaticTickets = Lotto.getAutomaticTickets(lottoMoney, manualTickets);
         InputView.ticketsCountView(manualTickets, automaticTickets);
-        for (int i = 0; i < automaticTickets; i++) {
+        for (int i = manualTickets; i <= automaticTickets; i++) {
             lottoTickets.add(i, new LottoTicket(Lotto.setLottoNumbers(Lotto.setOriginalLottoNumbers())));
-            InputView.lottoNumbersView(lottoTickets.get(i).getLottoNumbers());
         }
+        InputView.lottoTicketsNumbersView(lottoTickets);
 
-        WinningNumber winningNumber = new WinningNumber(InputView.setNumbers(InputException.catchWinningNumberException(InputView.winningNumberInput())));
-        int bonusBall = InputException.catchBonusBallException(winningNumber.getWinningNumbers(), InputView.bonusBallView());
-        winningNumber.setBonusBall(bonusBall);
+        ArrayList<Integer> winNumber = InputView.setNumbers(InputException.catchWinningNumberException(InputView.winningNumberInput()));
+        WinningNumber winningNumber = new WinningNumber(winNumber, InputException.catchBonusBallException(winNumber, InputView.bonusBallView()));
 
         OutputView.winningStatisticsView();
         Lotto.checkLottoTicketsMatchCount(lottoTickets, winningNumber);

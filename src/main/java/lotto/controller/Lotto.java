@@ -56,8 +56,9 @@ public class Lotto {
 
     public static void calculateMatchResults(ArrayList<LottoTicket> lottoTickets, Calculation calculation){
         for(LottoTicket lottoTicket : lottoTickets){
-            if(lottoTicket.checkMatchCount() != Rank.NOTHING){
-                calculation.setResults(lottoTicket.checkMatchCount());
+            Rank rank = Rank.checkMatchCountOf(lottoTicket.getMatchCount(),lottoTicket.isBonusball());
+            if(rank != Rank.NOTHING){
+                calculation.setResults(rank);
             }
         }
     }

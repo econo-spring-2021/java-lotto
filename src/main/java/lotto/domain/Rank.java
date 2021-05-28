@@ -8,6 +8,8 @@ public enum Rank {
     FIRST(6, 2_000_000_000),
     NOTHING(0,0);
 
+    public static final int SECOND_MATCH_COUNT = 5;
+
     public int getMoney() {
         return money;
     }
@@ -24,4 +26,15 @@ public enum Rank {
         this.money = money;
     }
 
+    public static Rank checkMatchCountOf(int matchCount, boolean isBonusball) {
+        for (Rank rank : Rank.values()) {
+            if (matchCount == SECOND_MATCH_COUNT && isBonusball == true) {
+                return Rank.SECOND;
+            }
+            if (rank.getMatch() == matchCount) {
+                return rank;
+            }
+        }
+        return Rank.NOTHING;
+    }
 }

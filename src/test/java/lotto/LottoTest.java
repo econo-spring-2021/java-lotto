@@ -7,6 +7,7 @@ import lotto.domain.Rank;
 import lotto.domain.WinningNumber;
 import lotto.view.InputView;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -16,14 +17,15 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class LottoTest {
     private final int lottoMoney = 5000;
-    private int lottoTicketsNumber = 5;
+    int manualTickets = 1;
     private static ArrayList<LottoTicket> lottoTickets = new ArrayList<>();
-    private static WinningNumber winningNumbers;
+    private static WinningNumber winningNumber;
     private static Calculation calculation = new Calculation();
 
+    @DisplayName("자동티켓수 테스트")
     @Test
     public void ticketsNumberTest() {
-        assertThat(Lotto.getAutomaticTickets(lottoMoney,1)).isEqualTo(4);
+        assertThat(Lotto.getAutomaticTickets(lottoMoney,manualTickets)).isEqualTo(4);
     }
 
     @BeforeAll
@@ -41,20 +43,22 @@ public class LottoTest {
         lottoTickets.add(new LottoTicket(testNumbers5));
 
         ArrayList<Integer> winningAnswers = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 45));
-        winningNumbers = new WinningNumber(winningAnswers);
-        winningNumbers.setBonusBall(6);
+        int bonusBall = 6;
+        winningNumber = new WinningNumber(winningAnswers,bonusBall);
 
-        Lotto.checkLottoTicketsMatchCount(lottoTickets, winningNumbers);
+        Lotto.checkLottoTicketsMatchCount(lottoTickets, winningNumber);
         Lotto.calculateMatchResults(lottoTickets, calculation);
     }
 
+    @DisplayName("한 티켓의 당첨 일치 수 테스트")
     @Test
     public void LottoOneTicketMatchCountTest() {
-        Lotto.checkOneLottoTicketMatchCount(lottoTickets.get(0), winningNumbers);
+        Lotto.checkOneLottoTicketMatchCount(lottoTickets.get(0), winningNumber);
         assertThat(lottoTickets.get(0).getMatchCount()).isEqualTo(5);
         assertThat(lottoTickets.get(0).isBonusball()).isEqualTo(true);
     }
 
+    @DisplayName("로또 티켓들의 당첨 일치 수 테스트")
     @Test
     public void LottoTicketsMatchCountTest() {
         for (int i = 1; i < lottoTickets.size(); i++) {
@@ -63,16 +67,19 @@ public class LottoTest {
         }
     }
 
+    @DisplayName("로또 티켓의 Rank 테스트")
     @Test
-    public void LottoTicketCheckMatchCountTest() {
-        assertThat(lottoTickets.get(0).checkMatchCount()).isEqualTo(Rank.SECOND);
+    public void LottoTicketRankCheckMatchCountTest() {
+        assertThat(Rank.checkMatchCountOf(lottoTickets.get(0).getMatchCount(), lottoTickets.get(0).isBonusball())).isEqualTo(Rank.SECOND);
     }
 
+    @DisplayName("Rank 2위를 가진 티켓 수 테스트")
     @Test
     public void CalculationSetResultTest() {
         assertThat(calculation.getResults().get(Rank.SECOND)).isEqualTo(1);
     }
 
+    @DisplayName("총 수익률 테스트")
     @Test
     public void CalculationBenefitPercentTest() {
         assertThat(calculation.getBenefitPercent(lottoMoney)).isEqualTo(600.0);

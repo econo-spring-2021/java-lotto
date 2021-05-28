@@ -30,5 +30,4 @@ public class Calculation {
         }
         return sum / money;
     }
-
 }
