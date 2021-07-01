@@ -5,6 +5,7 @@ import lotto.domain.LottoTicket;
 import lotto.domain.UserLottoTickets;
 import lotto.domain.WinningLotto;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -13,6 +14,7 @@ class UserLottoTicketTest {
     private UserLottoTickets userLottoTicket;
 
     @Test
+    @DisplayName("당첨된 로또 티켓이 올바르게 유저 티켓의 촐 액수로 합계되는지")
     void test_getTotalPrice() {
 
         LottoTicket lottoTicket1 = new LottoTicket(Arrays.asList(1, 2, 3, 4, 5, 6));

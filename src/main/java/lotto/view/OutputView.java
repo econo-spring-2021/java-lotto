@@ -46,7 +46,10 @@ public class OutputView {
     }
 
     public static void printLottoTicket(List<Integer> numbers) {
-        System.out.println("[" + numbers.stream().map(String::valueOf).collect(Collectors.joining(",")) + "]");
+        String LottoTicketInfo = numbers.stream()
+                .map(String::valueOf)
+                .collect(Collectors.joining(","));
+        System.out.println("[" + LottoTicketInfo + "]");
     }
 
     public static void askWinningLottoNumber() {
