@@ -26,6 +26,6 @@ class UserLottoTicketTest {
         WinningLotto winningLotto = new WinningLotto(new LottoTicket(Arrays.asList(1, 2, 3, 4, 5, 7)), 6);
         userLottoTicket.setLottosResult(winningLotto);
 
-        Assertions.assertEquals(LottoResult.FIRST_LOTTO_PRICE + LottoResult.SECOND_LOTTO_PRICE, userLottoTicket.getTotalPrice());
+        Assertions.assertEquals(LottoResult.FIRST.getPrice() + LottoResult.SECOND.getPrice(), userLottoTicket.getTotalPrice());
     }
 }

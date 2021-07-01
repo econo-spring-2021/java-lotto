@@ -13,7 +13,7 @@ class UserAccountTest {
     @DisplayName("수익률이 올바르게 계산되는지")
     void test_getIncomeRate() {
         UserAccount userAccount = new UserAccount(5000L);
-        userAccount.setIncome(LottoResult.FIRST_LOTTO_PRICE);
+        userAccount.setIncome(LottoResult.FIRST.getPrice());
         double rate = userAccount.getIncomeRate();
 
         Assertions.assertEquals(400000L, rate);

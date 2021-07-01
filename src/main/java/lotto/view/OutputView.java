@@ -18,11 +18,11 @@ public class OutputView {
     private static final String ASKING_WINNING_LOTTO_NUMBER_MESSAGE = "지난 주 당첨 번호를 입력해주세요.";
     private static final String ASKING_BONUS_NUMBER_MESSAGE = "보너스 볼을 입력해 주세요.";
 
-    private static final String FIFTH_LOTTO_MESSAGE = "3개 일치 (" + LottoResult.FIFTH_LOTTO_PRICE + "원)- ";
-    private static final String FORTH_LOTTO_MESSAGE = "4개 일치 (" + LottoResult.FORTH_LOTTO_PRICE + "원)- ";
-    private static final String THIRD_LOTTO_MESSAGE = "5개 일치 (" + LottoResult.THIRD_LOTTO_PRICE + "원)- ";
-    private static final String SECOND_LOTTO_MESSAGE = "5개 일치, 보너스 볼 일 (" + LottoResult.SECOND_LOTTO_PRICE + "원)- ";
-    private static final String FIRST_LOTTO_MESSAGE = "6개 일치 (" + LottoResult.FIRST_LOTTO_PRICE + "원)- ";
+    private static final String FIFTH_LOTTO_MESSAGE = "3개 일치 (" + LottoResult.FIFTH.getPrice() + "원)- ";
+    private static final String FORTH_LOTTO_MESSAGE = "4개 일치 (" + LottoResult.FORTH.getPrice() + "원)- ";
+    private static final String THIRD_LOTTO_MESSAGE = "5개 일치 (" + LottoResult.THIRD.getPrice() + "원)- ";
+    private static final String SECOND_LOTTO_MESSAGE = "5개 일치, 보너스 볼 일 (" + LottoResult.SECOND.getPrice() + "원)- ";
+    private static final String FIRST_LOTTO_MESSAGE = "6개 일치 (" + LottoResult.FIRST.getPrice() + "원)- ";
 
     private static final String INCOME_RATE_FORMAT_MESSAGE = "총 수익률은 %f입니다.\n";
 

@@ -1,18 +1,18 @@
 package lotto.domain;
 
 public enum LottoResult {
-    FIRST(6), SECOND(7), THIRD(5), FORTH(4), FIFTH(3), NONE(2);
-
-    public static final Long FIFTH_LOTTO_PRICE = 5000L;
-    public static final Long FORTH_LOTTO_PRICE = 50000L;
-    public static final Long THIRD_LOTTO_PRICE = 1500000L;
-    public static final Long SECOND_LOTTO_PRICE = 30000000L;
-    public static final Long FIRST_LOTTO_PRICE = 2000000000L;
+    FIRST(6, 2000000000L), SECOND(7, 30000000L), THIRD(5, 1500000L), FORTH(4, 50000L), FIFTH(3,35000L), NONE(2, 0L);
 
     private int value;
+    private Long price;
 
-    LottoResult(int value) {
+    LottoResult(int value, Long price) {
         this.value = value;
+        this.price = price;
+    }
+
+    public Long getPrice() {
+        return price;
     }
 
     public static LottoResult getLottoResult(LottoTicket ticket, WinningLotto winningLotto) {

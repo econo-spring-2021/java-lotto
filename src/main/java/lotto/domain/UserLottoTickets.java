@@ -29,12 +29,7 @@ public class UserLottoTickets {
     }
 
     private Long getLottoPrice(LottoTicket ticket) {
-        if (ticket.getResult() == LottoResult.FIFTH) return LottoResult.FIFTH_LOTTO_PRICE;
-        if (ticket.getResult() == LottoResult.FORTH) return LottoResult.FORTH_LOTTO_PRICE;
-        if (ticket.getResult() == LottoResult.THIRD) return LottoResult.THIRD_LOTTO_PRICE;
-        if (ticket.getResult() == LottoResult.SECOND) return LottoResult.SECOND_LOTTO_PRICE;
-        if (ticket.getResult() == LottoResult.FIRST) return LottoResult.FIRST_LOTTO_PRICE;
-        return 0L;
+        return ticket.getResult().getPrice();
     }
 
     public int getSpecificResultCount(LottoResult result) {
