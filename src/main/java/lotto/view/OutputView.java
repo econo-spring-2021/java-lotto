@@ -80,4 +80,8 @@ public class OutputView {
     public static void printIncomeRate(double rate) {
         System.out.printf(INCOME_RATE_FORMAT_MESSAGE, rate);
     }
+
+    public static void printExceptionMessage(Exception e) {
+        System.out.println(e.getMessage());
+    }
 }

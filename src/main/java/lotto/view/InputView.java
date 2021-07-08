@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Scanner;
 
 public class InputView {
+    private static final String NUMBER_FORMAT_EXCEPTION_MESSAGE = "숫자가 아닌 입력이 있습니다. 다시 입력해주세요.";
+
     private static Scanner scanner = new Scanner(System.in);
 
     public static Long getUserMoney() {
@@ -12,8 +14,8 @@ public class InputView {
             String input = arrangeInput(scanner.nextLine());
 
             return Long.parseLong(input);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+        } catch (NumberFormatException e) {
+            System.out.println(NUMBER_FORMAT_EXCEPTION_MESSAGE);
 
             return getUserMoney();
         }
@@ -24,8 +26,8 @@ public class InputView {
             String input = arrangeInput(scanner.nextLine());
 
             return Integer.parseInt(input);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+        } catch (NumberFormatException e) {
+            System.out.println(NUMBER_FORMAT_EXCEPTION_MESSAGE);
 
             return getManualLottoCount();
         }
@@ -33,7 +35,6 @@ public class InputView {
 
     public static List<Integer> getLotto() {
         String input = arrangeInput(scanner.nextLine());
-//        String input = scanner.nextLine();
 
         return splitLottoString(input);
     }
@@ -47,22 +48,21 @@ public class InputView {
             }
 
             return splitedNumberInputs;
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            System.out.println(e);
+        } catch (NumberFormatException e) {
+            System.out.println(NUMBER_FORMAT_EXCEPTION_MESSAGE);
 
             return getLotto();
         }
     }
 
-    public static Integer getBonusBall() {
+    public static Integer getBonusNumber() {
         try {
             String input = arrangeInput(scanner.nextLine());
             return Integer.parseInt(input);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+        } catch (NumberFormatException e) {
+            System.out.println(NUMBER_FORMAT_EXCEPTION_MESSAGE);
 
-            return getBonusBall();
+            return getBonusNumber();
         }
     }
 

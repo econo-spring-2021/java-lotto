@@ -23,7 +23,7 @@ class UserLottoTicketTest {
         userLottoTicket = new UserLottoTickets();
         userLottoTicket.addLottoTicket(lottoTicket1);
         userLottoTicket.addLottoTicket(lottoTicket2);
-        WinningLotto winningLotto = new WinningLotto(new LottoTicket(Arrays.asList(1, 2, 3, 4, 5, 7)), 6);
+        WinningLotto winningLotto = new WinningLotto(Arrays.asList(1, 2, 3, 4, 5, 7), 6);
         userLottoTicket.setLottosResult(winningLotto);
 
         Assertions.assertEquals(LottoResult.FIRST.getPrice() + LottoResult.SECOND.getPrice(), userLottoTicket.getTotalPrice());

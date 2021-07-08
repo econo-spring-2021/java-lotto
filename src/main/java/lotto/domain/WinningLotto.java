@@ -2,17 +2,20 @@ package lotto.domain;
 
 import java.util.List;
 
-public class WinningLotto {
-    private final LottoTicket lottoTicket;
+public class WinningLotto extends LottoTicket{
+
     private final Integer bonusNumber;
 
-    public WinningLotto(LottoTicket lottoTicket, Integer bonusNumber) {
-        this.lottoTicket = lottoTicket;
+    public WinningLotto(List<Integer> lottoNumber, Integer bonusNumber) {
+        super(lottoNumber);
+
+        validateNumberRange(bonusNumber);
+
         this.bonusNumber = bonusNumber;
     }
 
     public List<Integer> getNumbers() {
-        return lottoTicket.getNumbers();
+        return super.numbers;
     }
 
     public Integer getBonusNumber() {
