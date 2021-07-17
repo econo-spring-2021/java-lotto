@@ -38,7 +38,7 @@ public class LottoController {
         OutputView.printUserLottoTicket(manualLottoCount, automaticCount, userLottoTicket.getDto());
     }
 
-    public int getManualLottoCount() {
+    private int getManualLottoCount() {
         OutputView.askManualLottoCount();
 
         return InputView.getManualLottoCount();
@@ -47,7 +47,7 @@ public class LottoController {
         // domain에서 예외를 파악하는 것도 이상한 것 같은데 어떻게 해야 할까요?
     }
 
-    public void getManualLotto() {
+    private void getManualLotto() {
         OutputView.askManualLottoNumber();
 
         try {
@@ -59,7 +59,7 @@ public class LottoController {
         }
     }
 
-    public void getAutomaticLotto(int automaticCount) {
+    private void getAutomaticLotto(int automaticCount) {
         for (int i = 0; i < automaticCount; i++) {
             userLottoTicket.addLottoTicket(new LottoTicket());
         }
