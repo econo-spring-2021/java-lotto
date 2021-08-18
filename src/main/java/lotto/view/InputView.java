@@ -1,5 +1,8 @@
 package lotto.view;
 
+import lotto.controller.InvalidInputMoneyException;
+import lotto.controller.InvalidInputWonBallsException;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -13,18 +16,24 @@ public class InputView {
     private static final String SEPARATE_WINNING_BALL = ",";
     private static Scanner input = new Scanner(System.in);
 
-    public static int moneyInput(){
+    public static int moneyInput() throws InvalidInputMoneyException {
         System.out.println(PURCHASE_MONEY_INPUT_MESSAGE);
-        return input.nextInt()/LOTTO_TICKET_PRICE;
+        int purchasedMoney = input.nextInt();
+        String buffer = input.nextLine();
+        if(purchasedMoney<LOTTO_TICKET_PRICE)
+            throw new InvalidInputMoneyException();
+        return purchasedMoney/LOTTO_TICKET_PRICE;
     }
 
-    public static List<Integer> wonNumberInput(){
+    public static List<Integer> wonNumberInput() throws InvalidInputWonBallsException {
         List<Integer> tempWinningBalls = new ArrayList<>();
         System.out.println(LASTWEEK_WINNING_NUMBERS_INPUT_MESSAGE);
-        String buffer = input.nextLine();
         String winningBallString = input.nextLine().replaceAll(" ","").trim();
         String[] winningBallArray = separateWinningBall(winningBallString);
-
+        System.out.println(winningBallArray.length);
+        if(winningBallArray.length !=6 ) {
+            throw new InvalidInputWonBallsException();
+        }
         for (int i=0; i<6; i++){
             tempWinningBalls.add(Integer.parseInt(winningBallArray[i]));
         }
