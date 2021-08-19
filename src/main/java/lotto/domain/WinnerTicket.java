@@ -1,8 +1,8 @@
 package lotto.domain;
 
 public class WinnerTicket {
-    LottoTicket lottoTicket;
-    int bonusBall;
+    private LottoTicket lottoTicket;
+    private int bonusBall;
 
     public WinnerTicket(LottoTicket lottoTicket, int bonusBall) {
         this.lottoTicket = lottoTicket;
@@ -11,5 +11,9 @@ public class WinnerTicket {
 
     public LottoTicket getLottoTicket() {
         return lottoTicket;
+    }
+
+    public int getBonusBall() {
+        return bonusBall;
     }
 }

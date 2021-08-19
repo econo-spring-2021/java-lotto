@@ -7,6 +7,11 @@ import java.util.List;
 public class LottoTicket {
     private List<Integer> lottoNumbers;
     private int winCount;
+    private boolean bonusFlag;
+
+    public boolean isBonusFlag() {
+        return bonusFlag;
+    }
 
     public LottoTicket() {
         List<Integer> tempLottoNumbers = new ArrayList<>();
@@ -27,6 +32,10 @@ public class LottoTicket {
 
     public void lottoWinIncrease(){
         winCount++;
+    }
+
+    public void lottoBonusCoincedence(){
+        bonusFlag = true;
     }
 
     public int getWinCount() {
