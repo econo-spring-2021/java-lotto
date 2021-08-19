@@ -30,7 +30,7 @@ public class InputView {
         System.out.println(LASTWEEK_WINNING_NUMBERS_INPUT_MESSAGE);
         String winningBallString = input.nextLine().replaceAll(" ","").trim();
         String[] winningBallArray = separateWinningBall(winningBallString);
-        System.out.println(winningBallArray.length);
+
         if(winningBallArray.length !=6 ) {
             throw new InvalidInputWonBallsException();
         }
