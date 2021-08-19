@@ -15,4 +15,8 @@ public class UserLottoTicket {
         Collections.sort(purchasedLotto.get(index).getLottoNumbers());
         return purchasedLotto.get(index).getLottoNumbers();
     }
+
+    public List<LottoTicket> getPurchasedLotto() {
+        return purchasedLotto;
+    }
 }
