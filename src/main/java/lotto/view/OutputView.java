@@ -38,7 +38,7 @@ public class OutputView {
         System.out.println(lottoNumbers);
     }
 
-    public static void benefitShow(double benefit){
+    public static void benefitShow(String benefit){
         System.out.println(BENEFIT_MESSAGE+benefit+BENEFIT_MESSAGE_END);
     }
 

@@ -16,6 +16,9 @@ public enum LottoResult {
         return count;
     }
 
+    public int getMoney() {
+        return money;
+    }
 
     public static LottoResult lottoResultMatch(int coincedenceCount, boolean bonusBallFlag) {
         for (LottoResult result : LottoResult.values()) {
