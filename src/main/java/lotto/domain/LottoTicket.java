@@ -6,6 +6,7 @@ import java.util.List;
 
 public class LottoTicket {
     private List<Integer> lottoNumbers;
+    private int winCount;
 
     public LottoTicket() {
         List<Integer> tempLottoNumbers = new ArrayList<>();
@@ -22,5 +23,13 @@ public class LottoTicket {
 
     public List<Integer> getLottoNumbers() {
         return lottoNumbers;
+    }
+
+    public void lottoWinIncrease(){
+        winCount++;
+    }
+
+    public int getWinCount() {
+        return winCount;
     }
 }
