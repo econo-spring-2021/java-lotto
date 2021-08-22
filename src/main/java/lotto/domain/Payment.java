@@ -5,6 +5,10 @@ import lotto.view.Constants;
 public class Payment {
     int money;
 
+    public Payment() {
+
+    }
+
     public Payment(int money) {
         isUnderMinimumMoney(money);
         this.money = money;
