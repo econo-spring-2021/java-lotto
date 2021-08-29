@@ -1,9 +1,6 @@
 package lotto.domain;
 
-import lotto.view.Constants;
-
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class LottoTicket {

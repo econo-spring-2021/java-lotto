@@ -1,17 +1,47 @@
 package lotto.view;
 
+import lotto.domain.LottoNumber;
+
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class InputView {
     private Scanner scanner;
     private Integer inputMoney;
-
-    public InputView() {
-        scanner = new Scanner(System.in);
-    }
+    private String winningLottoNumbers;
+    private Integer bonusBall;
 
     public Integer inputMoney() {
+        scanner = new Scanner(System.in);
         inputMoney = scanner.nextInt();
         return inputMoney;
     }
+
+    public List<LottoNumber> inputWinningLottoNumbers() {
+        scanner = new Scanner(System.in);
+        winningLottoNumbers = scanner.nextLine();
+        winningLottoNumbers = eliminateSpaceBlank(winningLottoNumbers);
+        List<LottoNumber> lottoNumbers = splitCommaFromStringInput(winningLottoNumbers);
+        return lottoNumbers;
+    }
+
+    public String eliminateSpaceBlank(String stringContainingSpaceBlank) {
+        return stringContainingSpaceBlank.trim().replace(Constants.SPACE, Constants.EMPTY);
+    }
+
+    public List<LottoNumber> splitCommaFromStringInput(String stringContainingComma) {
+        return Arrays.asList(stringContainingComma.split(Constants.DELIMITER))
+                .stream()
+                .map(s -> new LottoNumber(Integer.parseInt(s)))
+                .collect(Collectors.toList());
+    }
+
+    public Integer inputBonusBallNumber() {
+        scanner = new Scanner(System.in);
+        bonusBall = scanner.nextInt();
+        return bonusBall;
+    }
+
 }
