@@ -84,14 +84,9 @@ public class GameController {
         return money;
     }
 
-
-    public double lottoBenefitShow(int income){
+    public void lottoBenefitShow(int income){
         int money = userLottoTicket.getPurchasedLotto().size() * 1000;
         double benefit = (double)income / money;
         OutputView.benefitShow(String.format("%.2f", benefit));
-
-        return benefit;
     }
-
-
 }
