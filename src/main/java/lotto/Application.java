@@ -7,6 +7,7 @@ public class Application {
         GameController game = new GameController();
         game.lottoPurchase();
         game.winningBallInput();
-        game.lottoBenefitShow(game.lottoResultShow());
+        int income = game.lottoPrizeCalculate(game.lottoResultShow());
+        game.lottoBenefitShow(income);
     }
 }

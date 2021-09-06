@@ -57,17 +57,16 @@ public class GameController {
         return lottoTicket.getWinCount();
     }
 
+    public void resultStatisticsInit(LinkedHashMap<LottoResult, Integer> resultStatistics) {
+        for(LottoResult result : LottoResult.values())
+            resultStatistics.put(result, 0);
+    }
 
-    public int lottoResultShow() {
+    public LinkedHashMap<LottoResult, Integer> lottoResultShow() {
         LinkedHashMap<LottoResult, Integer> resultStatistics = new LinkedHashMap<>();
-        resultStatistics.put(LottoResult.THREE_WIN, 0);
-        resultStatistics.put(LottoResult.FOUR_WIN, 0);
-        resultStatistics.put(LottoResult.FIVE_WIN, 0);
-        resultStatistics.put(LottoResult.FIVE_BONUS_WIN, 0);
-        resultStatistics.put(LottoResult.SIX_WIN, 0);
-        resultStatistics.put(LottoResult.LOSE, 0);
-
+        resultStatisticsInit(resultStatistics);
         OutputView.resultSignalShow();
+
         for (int i = 0; i < userLottoTicket.getPurchasedLotto().size(); i++) {
             int lottoOutput = lottoComparing(winnerTicket, userLottoTicket.getPurchasedLotto().get(i));
             LottoResult lottoResult = LottoResult.lottoResultMatch(lottoOutput, userLottoTicket.getPurchasedLotto().get(i).isBonusFlag());
@@ -77,6 +76,10 @@ public class GameController {
         List<Integer> results = new ArrayList<>(resultStatistics.values());
         OutputView.resultShow(results);
 
+        return resultStatistics;
+    }
+
+    public int lottoPrizeCalculate(LinkedHashMap<LottoResult,Integer> resultStatistics){
         int money =0;
         for (LottoResult lottoResult : LottoResult.values()) {
             money += lottoResult.getMoney() * resultStatistics.get(lottoResult);
