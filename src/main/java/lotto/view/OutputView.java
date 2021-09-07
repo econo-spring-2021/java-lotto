@@ -1,6 +1,9 @@
 package lotto.view;
 
+import lotto.domain.LottoRank;
 import lotto.domain.LottoTicket;
+
+import java.util.Map;
 
 public class OutputView {
     public static void printErrorMessage(String errorMessage) {
@@ -39,5 +42,16 @@ public class OutputView {
     public static void printWinningStatistics() {
         System.out.println(Constants.WINNING_STATISTICS_MESSAGE);
         System.out.println(Constants.LINE_MADE_BY_HYPHEN_MESSAGE);
+    }
+
+    public static void printResult(Map<LottoRank, Integer> winningStatistics) {
+        winningStatistics.forEach((rank, count) ->
+                System.out.println(rank.getMatchCount()
+                + "개 일치" + " (" + rank.getMoney() + "원)" + "-" + count + "개"
+                ));
+    }
+
+    public static void printEarningRate(double earningRate) {
+        System.out.println("총 수익률은 " + String.format("%.2f",earningRate) + "입니다.");
     }
 }

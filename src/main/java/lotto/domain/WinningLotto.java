@@ -6,13 +6,17 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class WinningLotto extends Lotto{
+public class WinningLotto extends Lotto {
     private LottoNumber bonusBall;
 
     public WinningLotto(List<LottoNumber> lottoNumbers, LottoNumber bonusBall) {
         super(lottoNumbers);
         validateDuplicatedLottoNumber(lottoNumbers,bonusBall);
         this.bonusBall = bonusBall;
+    }
+
+    public List<LottoNumber> getLottoNumbers() {
+        return super.getLottoNumbers();
     }
 
     public LottoNumber getBonusBall() {

@@ -17,6 +17,7 @@ public class Lotto {
     }
 
     public Lotto(List<LottoNumber> lottoNumbers) {
+        validateLottoNumberCount(lottoNumbers);
         validateDuplicatedLottoNumber(lottoNumbers);
         this.lottoNumbers = lottoNumbers;
     }
@@ -25,13 +26,33 @@ public class Lotto {
         return lottoNumbers;
     }
 
+    public LottoRank findLottoRank(WinningLotto winningLotto) {
+        Set<LottoNumber> lottoAndWinningLotto = new HashSet<>();
+        lottoAndWinningLotto.addAll(lottoNumbers);
+        lottoAndWinningLotto.addAll(winningLotto.getLottoNumbers());
+
+        int matchCount = (Constants.LOTTO_SIZE_EXCEPT_BONUS_NUMBER * 2) - lottoAndWinningLotto.size();
+        boolean bonusMatch = lottoNumbers.contains(winningLotto.getBonusBall());
+
+        return LottoRank.of(matchCount, bonusMatch);
+    }
+
+    public boolean contains(LottoNumber lottoNumber) {
+        return lottoNumbers.contains(lottoNumber);
+    }
+
     public void validateDuplicatedLottoNumber(List<LottoNumber> lottoNumbers) throws IllegalArgumentException {
-        Set<Integer> lottoNumberHashSet = new HashSet<>();
-        for (LottoNumber lottoNumber : lottoNumbers) {
-            lottoNumberHashSet.add(lottoNumber.getNumber());
-        }
-        if (lottoNumberHashSet.size() < Constants.LOTTO_SIZE_EXCEPT_BONUS_NUMBER) {
+        Set<LottoNumber> lottoNumberHashSet = new HashSet<>();
+        lottoNumberHashSet.addAll(lottoNumbers);
+        if (lottoNumberHashSet.size() != lottoNumbers.size()) {
             throw new IllegalArgumentException("중복된 로또 번호가 존재합니다.");
         }
+    }
+
+    public void validateLottoNumberCount(List<LottoNumber> lottoNumbers) throws IllegalArgumentException {
+        if(lottoNumbers.size() != Constants.LOTTO_SIZE_EXCEPT_BONUS_NUMBER) {
+            throw new IllegalArgumentException("로또 번호의 개수는 " + Constants.LOTTO_SIZE_EXCEPT_BONUS_NUMBER + "개 입니다.");
+        }
+
     }
 }
