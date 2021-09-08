@@ -15,19 +15,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class GameControllerTest {
     @Test
-    @DisplayName("내가 산 로또 티켓과 지난 주 당첨 로또 티켓과 일치 횟수")
-    void lottoComparing() {
-        GameController gameController = new GameController();
-        List<Integer> myLottos = new ArrayList<>();
-        for (int i = 1; i <= 6; i++)
-            myLottos.add(i);
-        LottoTicket lottoTicket = new LottoTicket(myLottos);
-        LottoTicket winnerLotto = new LottoTicket(myLottos);
-        WinnerTicket winnerTicket = new WinnerTicket(winnerLotto, 45);
-        assertThat(GameController.lottoComparing(winnerTicket, lottoTicket)).isEqualTo(6);
-    }
-
-    @Test
     @DisplayName("내가 산 로또 당첨 통계에 따른 상금이 정확한지")
     void lottoResultShow() {
         LinkedHashMap<LottoResult, Integer> resultStatistics = new LinkedHashMap<>();

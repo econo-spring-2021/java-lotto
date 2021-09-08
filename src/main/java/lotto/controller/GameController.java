@@ -41,22 +41,6 @@ public class GameController {
         }
     }
 
-    public static int lottoComparing(WinnerTicket winnerTicket, LottoTicket lottoTicket) {
-        for (int i = 0; i < 6; i++) {
-            for (int j = 0; j < 6; j++) {
-                if (winnerTicket.getLottoTicket().getLottoNumbers().get(i) == lottoTicket.getLottoNumbers().get(j))
-                    lottoTicket.lottoWinIncrease();
-            }
-        }
-        for (int i = 0; i < 6; i++) {
-            if (lottoTicket.getLottoNumbers().get(i) == winnerTicket.getBonusBall()) {
-                lottoTicket.lottoBonusCoincedence();
-                break;
-            }
-        }
-        return lottoTicket.getWinCount();
-    }
-
     public void resultStatisticsInit(LinkedHashMap<LottoResult, Integer> resultStatistics) {
         for(LottoResult result : LottoResult.values())
             resultStatistics.put(result, 0);
@@ -68,7 +52,7 @@ public class GameController {
         OutputView.resultSignalShow();
 
         for (int i = 0; i < userLottoTicket.getPurchasedLotto().size(); i++) {
-            int lottoOutput = lottoComparing(winnerTicket, userLottoTicket.getPurchasedLotto().get(i));
+            int lottoOutput = winnerTicket.lottoComparing(userLottoTicket.getPurchasedLotto().get(i));
             LottoResult lottoResult = LottoResult.lottoResultMatch(lottoOutput, userLottoTicket.getPurchasedLotto().get(i).isBonusFlag());
             int num = resultStatistics.get(lottoResult);
             resultStatistics.put(lottoResult, ++num);
