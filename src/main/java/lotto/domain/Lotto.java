@@ -37,11 +37,7 @@ public class Lotto {
         return LottoRank.of(matchCount, bonusMatch);
     }
 
-    public boolean contains(LottoNumber lottoNumber) {
-        return lottoNumbers.contains(lottoNumber);
-    }
-
-    public void validateDuplicatedLottoNumber(List<LottoNumber> lottoNumbers) throws IllegalArgumentException {
+    private void validateDuplicatedLottoNumber(List<LottoNumber> lottoNumbers) throws IllegalArgumentException {
         Set<LottoNumber> lottoNumberHashSet = new HashSet<>();
         lottoNumberHashSet.addAll(lottoNumbers);
         if (lottoNumberHashSet.size() != lottoNumbers.size()) {
@@ -49,7 +45,7 @@ public class Lotto {
         }
     }
 
-    public void validateLottoNumberCount(List<LottoNumber> lottoNumbers) throws IllegalArgumentException {
+    private void validateLottoNumberCount(List<LottoNumber> lottoNumbers) throws IllegalArgumentException {
         if(lottoNumbers.size() != Constants.LOTTO_SIZE_EXCEPT_BONUS_NUMBER) {
             throw new IllegalArgumentException("로또 번호의 개수는 " + Constants.LOTTO_SIZE_EXCEPT_BONUS_NUMBER + "개 입니다.");
         }
