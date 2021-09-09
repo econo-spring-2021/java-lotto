@@ -1,5 +1,6 @@
 package lotto;
 
+import lotto.domain.LottoFactory;
 import lotto.domain.LottoTicket;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -13,7 +14,7 @@ class LottoTicketTest {
     @DisplayName("티켓이 생성될 때 번호 6개를 가지고 있는지")
     public void lottoSizeTest() {
         //given
-        lottoTicket = new LottoTicket();
+        lottoTicket = LottoFactory.LottoAutoGenerate();
         //when
 
         //then
@@ -24,7 +25,7 @@ class LottoTicketTest {
     @DisplayName("티켓이 생성될 때 로또 번호 범위가 1~45인지")
     public void lottoNumberRangeTest() {
         //given
-        lottoTicket = new LottoTicket();
+        lottoTicket = LottoFactory.LottoAutoGenerate();
         boolean rangeOutFlag = false;
 
         //when
@@ -41,7 +42,7 @@ class LottoTicketTest {
     @DisplayName("티켓마다 가지고 있는 보너스볼 일치 여부가 false로 초기화되어 있는지")
     public void lottoBonusFlagInit() {
         //given
-        lottoTicket = new LottoTicket();
+        lottoTicket = LottoFactory.LottoAutoGenerate();
 
         //when
 

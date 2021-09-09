@@ -8,7 +8,7 @@ public class UserLottoTicket {
     private List<LottoTicket> purchasedLotto = new ArrayList<>();
 
     public void addLottoTicket(){
-        purchasedLotto.add(new LottoTicket());
+        purchasedLotto.add(LottoFactory.LottoAutoGenerate());
     }
 
     public List<Integer> getPurchasedLotto(int index) {
