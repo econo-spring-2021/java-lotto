@@ -29,7 +29,7 @@ public class WinningLotto extends Lotto {
             lottoNumberHashSet.add(lottoNumber.getNumber());
         }
         lottoNumberHashSet.add(bonusBall.getNumber());
-        if (lottoNumberHashSet.size() < Constants.LOTTO_SIZE_CONTAINING_BONUS_BALL) {
+        if (lottoNumberHashSet.size() < Lotto.SIZE_CONTAINING_BONUS_BALL) {
             throw new IllegalArgumentException("보너스 볼이 당첨 번호와 중복됩니다.");
         }
     }

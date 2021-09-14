@@ -46,12 +46,13 @@ public class OutputView {
 
     public static void printResult(Map<LottoRank, Integer> winningStatistics) {
         winningStatistics.forEach((rank, count) ->
-                System.out.println(rank.getMatchCount()
-                + "개 일치" + " (" + rank.getMoney() + "원)" + "-" + count + "개"
-                ));
+                System.out.println(String.format(Constants.THREE_NUMBER_MATCH_MESSAGE,
+                        rank.getMatchCount(),
+                        rank.getMoney(),
+                        count)));
     }
 
     public static void printEarningRate(double earningRate) {
-        System.out.println("총 수익률은 " + String.format("%.2f",earningRate) + "입니다.");
+        System.out.println(String.format(Constants.PROFIT_RATE_RESULT_MESSAGE,earningRate));
     }
 }

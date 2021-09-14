@@ -5,6 +5,8 @@ import lotto.view.Constants;
 import java.util.Objects;
 
 public class LottoNumber {
+    public static final int MINIMUM_VALUE = 1;
+    public static final int MAXIMUM_VALUE = 45;
     private int number;
 
     public LottoNumber(int number) {
@@ -17,7 +19,7 @@ public class LottoNumber {
     }
 
     private void validateRange(int number) throws IllegalArgumentException {
-        if(number < Constants.LOTTO_MINIMUM_VALUE || number > Constants.LOTTO_MAXIMUM_VALUE ) {
+        if(number < LottoNumber.MINIMUM_VALUE || number > LottoNumber.MAXIMUM_VALUE ) {
             throw new IllegalArgumentException("로또 번호의 범위는 1 ~ 45 사이의 수 입니다.");
         }
     }

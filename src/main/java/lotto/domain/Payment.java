@@ -18,7 +18,7 @@ public class Payment {
     }
 
     private void isUnderMinimumMoney(int money) throws IllegalArgumentException {
-        if(money < Constants.LOTTO_PRICE) {
+        if(money < Lotto.PRICE) {
             throw new IllegalArgumentException("로또 구입 금액은 최소 1000원 입니다.");
         }
     }

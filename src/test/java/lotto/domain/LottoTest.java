@@ -17,7 +17,7 @@ class LottoTest {
     @Test
     void 로또_생성_확인하기() {
         Lotto lotto = new Lotto();
-        assertEquals(lotto.getLottoNumbers().size(), Constants.LOTTO_SIZE_EXCEPT_BONUS_NUMBER);
+        assertEquals(lotto.getLottoNumbers().size(), Lotto.SIZE_EXCEPT_BONUS_NUMBER);
     }
 
     @Test
@@ -48,7 +48,7 @@ class LottoTest {
 
         String message = exception.getMessage();
 
-        assertThat("로또 번호의 개수는 " + Constants.LOTTO_SIZE_EXCEPT_BONUS_NUMBER + "개 입니다.", is(equalTo(message)));
+        assertThat("로또 번호의 개수는 " + Lotto.SIZE_EXCEPT_BONUS_NUMBER + "개 입니다.", is(equalTo(message)));
     }
 
 }

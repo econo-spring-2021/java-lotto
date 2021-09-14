@@ -5,11 +5,14 @@ import lotto.view.Constants;
 import java.util.*;
 
 public class Lotto {
+    public static final int PRICE = 1000;
+    public static final int SIZE_EXCEPT_BONUS_NUMBER = 6;
+    public static final int SIZE_CONTAINING_BONUS_BALL = 7;
     private List<LottoNumber> lottoNumbers;
 
     public Lotto() {
         List<LottoNumber> lottoNumberRange = new ArrayList<LottoNumber>();
-        for (int i = Constants.LOTTO_MINIMUM_VALUE; i <= Constants.LOTTO_MAXIMUM_VALUE; i++) {
+        for (int i = LottoNumber.MINIMUM_VALUE; i <= LottoNumber.MAXIMUM_VALUE; i++) {
             lottoNumberRange.add(new LottoNumber(i));
         }
         Collections.shuffle(lottoNumberRange);
@@ -31,7 +34,7 @@ public class Lotto {
         lottoAndWinningLotto.addAll(lottoNumbers);
         lottoAndWinningLotto.addAll(winningLotto.getLottoNumbers());
 
-        int matchCount = (Constants.LOTTO_SIZE_EXCEPT_BONUS_NUMBER * 2) - lottoAndWinningLotto.size();
+        int matchCount = (Lotto.SIZE_EXCEPT_BONUS_NUMBER * 2) - lottoAndWinningLotto.size();
         boolean bonusMatch = lottoNumbers.contains(winningLotto.getBonusBall());
 
         return LottoRank.of(matchCount, bonusMatch);
@@ -46,8 +49,8 @@ public class Lotto {
     }
 
     private void validateLottoNumberCount(List<LottoNumber> lottoNumbers) throws IllegalArgumentException {
-        if(lottoNumbers.size() != Constants.LOTTO_SIZE_EXCEPT_BONUS_NUMBER) {
-            throw new IllegalArgumentException("로또 번호의 개수는 " + Constants.LOTTO_SIZE_EXCEPT_BONUS_NUMBER + "개 입니다.");
+        if(lottoNumbers.size() != Lotto.SIZE_EXCEPT_BONUS_NUMBER) {
+            throw new IllegalArgumentException("로또 번호의 개수는 " + Lotto.SIZE_EXCEPT_BONUS_NUMBER + "개 입니다.");
         }
 
     }

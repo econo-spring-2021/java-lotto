@@ -1,12 +1,10 @@
 package lotto.controller;
 
 import lotto.domain.*;
-import lotto.view.Constants;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class Simulator {
@@ -31,7 +29,7 @@ public class Simulator {
 
     public void start() {
         inputMoneyProcess();
-        lottoCount = payment.getMoney() / Constants.LOTTO_PRICE;
+        lottoCount = payment.getMoney() / Lotto.PRICE;
         OutputView.printLottoCountMessage(lottoCount);
         generateAutoLottoTicket(lottoCount);
         OutputView.printLottoTicketMessage(lottoTicket, lottoCount);
