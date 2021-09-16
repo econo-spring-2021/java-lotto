@@ -3,7 +3,10 @@ package lotto.view;
 import java.util.*;
 
 public class OutputView {
-    private static final String PURCHASED_LOTTO_NUMBER_MESSAGE = "개를 구매했습니다.";
+    private static final String MANUAL_LOTTO_MESSAGE = "수동으로 ";
+    private static final String LOTTO_UNIT ="장, ";
+    private static final String AUTO_LOTTO_MESSAGE ="자동으로 ";
+    private static final String PURCHASED_LOTTO_NUMBER_MESSAGE = "장을 구매했습니다.";
     private static final String WIN_STATISTICS_MESSAGE = "당첨 통계";
     private static final String WIN_STATISTICS_SEPARATOR ="---------";
     private static final String THREE_LOTTO_COINCIDENCE_MESSAGE = "3개 일치 (5000원) - ";
@@ -14,8 +17,8 @@ public class OutputView {
     private static final String BENEFIT_MESSAGE ="총 수익률은 ";
     private static final String BENEFIT_MESSAGE_END = "입니다.";
 
-    public static void numberOfLottoShow(int number){
-        System.out.println(number+PURCHASED_LOTTO_NUMBER_MESSAGE);
+    public static void numberOfLottoShow(int autoLottoCount, int manualLottoCount){
+        System.out.println(MANUAL_LOTTO_MESSAGE+autoLottoCount+LOTTO_UNIT+AUTO_LOTTO_MESSAGE+manualLottoCount+PURCHASED_LOTTO_NUMBER_MESSAGE);
     }
 
     public static void resultSignalShow(){

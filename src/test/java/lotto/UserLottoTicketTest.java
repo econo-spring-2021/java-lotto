@@ -17,7 +17,7 @@ class UserLottoTicketTest {
 
         //when
         for(int i =0; i<10; i++)
-            userLottoTicket.addLottoTicket();
+            userLottoTicket.addAutoLottoTicket();
 
         //then
         assertThat(userLottoTicket.getPurchasedLotto().size()).isEqualTo(10);
