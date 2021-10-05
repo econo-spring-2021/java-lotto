@@ -1,7 +1,6 @@
 package lotto.controller;
 
 import lotto.domain.*;
-import lotto.view.Constants;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -18,7 +17,9 @@ public class Simulator {
     private int lottoCount;
     private List<LottoRank> lottoRanks;
     private LottoResult lottoResult;
-    Map<LottoRank, Integer> winningStatistics;
+    private Map<LottoRank, Integer> winningStatistics;
+    private int manualLottoCount;
+    private int autoLottoCount;
 
     public Simulator() {
         inputView = new InputView();
@@ -33,8 +34,11 @@ public class Simulator {
     public void start() {
         inputMoneyProcess();
         lottoCount = payment.getMoney() / Lotto.PRICE;
-        OutputView.printLottoCountMessage(lottoCount);
-        generateAutoLottoTicket(lottoCount);
+        inputManualLottoCountProcess();
+        autoLottoCount = lottoCount - manualLottoCount;
+        inputManualLottoProcess(manualLottoCount);
+        generateAutoLottoTicket(autoLottoCount);
+        OutputView.printLottoCountMessage(manualLottoCount, autoLottoCount);
         printLottoTicketProcess(lottoTicket);
         inputWinningLottoProcess();
         inputBonusBallProcess();
@@ -52,6 +56,27 @@ public class Simulator {
         } catch(Exception e) {
             OutputView.printErrorMessage(e.getMessage());
             inputMoneyProcess();
+        }
+    }
+
+    private void inputManualLottoCountProcess() {
+        OutputView.inputManualLottoCountMessage();
+        manualLottoCount = inputView.inputManualLottoCount();
+    }
+
+    private void inputManualLottoProcess(int manualLottoCount) {
+        OutputView.inputManualLottoMessage();
+        for(int i = 0; i < manualLottoCount; i++) {
+            lottoTicket.add(generateLotto(inputView.inputLottoNumbers()));
+        }
+    }
+
+    private Lotto generateLotto(List<LottoNumber> lottoNumbers) {
+        try {
+            return new Lotto(lottoNumbers);
+        } catch (Exception e) {
+            OutputView.printErrorMessage(e.getMessage());
+            return generateLotto(inputView.inputLottoNumbers());
         }
     }
 
@@ -75,7 +100,7 @@ public class Simulator {
     private void inputWinningLottoProcess() {
         try {
             OutputView.inputSixDigitNumbersMessage();
-            lotto = new Lotto(inputView.inputWinningLottoNumbers());
+            lotto = new Lotto(inputView.inputLottoNumbers());
         } catch(Exception e) {
             OutputView.printErrorMessage(e.getMessage());
             inputWinningLottoProcess();

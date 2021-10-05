@@ -12,6 +12,7 @@ public class InputView {
     private Integer inputMoney;
     private String winningLottoNumbers;
     private Integer bonusBall;
+    private Integer manualLottoCount;
 
     public Integer inputMoney() {
         scanner = new Scanner(System.in);
@@ -19,13 +20,20 @@ public class InputView {
         return inputMoney;
     }
 
-    public List<LottoNumber> inputWinningLottoNumbers() {
+    public Integer inputManualLottoCount() {
+        scanner = new Scanner(System.in);
+        manualLottoCount = scanner.nextInt();
+        return manualLottoCount;
+    }
+
+    public List<LottoNumber> inputLottoNumbers() {
         scanner = new Scanner(System.in);
         winningLottoNumbers = scanner.nextLine();
         winningLottoNumbers = eliminateSpaceBlank(winningLottoNumbers);
         List<LottoNumber> lottoNumbers = splitCommaFromStringInput(winningLottoNumbers);
         return lottoNumbers;
     }
+
 
     public String eliminateSpaceBlank(String stringContainingSpaceBlank) {
         return stringContainingSpaceBlank.trim().replace(Constants.SPACE, Constants.EMPTY);

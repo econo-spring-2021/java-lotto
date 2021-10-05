@@ -9,8 +9,16 @@ public class OutputView {
         System.out.println(Constants.INPUT_MONEY_MESSAGE);
     }
 
-    public static void printLottoCountMessage(int lottoCount) {
-        System.out.println(String.format(Constants.PURCHASE_NUMBER_PRINT_MESSAGE, lottoCount));
+    public static void inputManualLottoCountMessage() {
+        System.out.println(Constants.INPUT_MANUAL_LOTTO_COUNT_MESSAGE);
+    }
+
+    public static void inputManualLottoMessage() {
+        System.out.println(Constants.INPUT_MANUAL_LOTTO_NUMBER_MESSAGE);
+    }
+
+    public static void printLottoCountMessage(int manualLottoCount, int autoLottoCount) {
+        System.out.println(String.format(Constants.PURCHASE_NUMBER_PRINT_MESSAGE, manualLottoCount, autoLottoCount));
     }
 
     public static void printLottoTicketMessage(int lottoNumber1, int lottoNumber2, int lottoNumber3, int lottoNumber4, int lottoNumber5, int lottoNumber6) {
