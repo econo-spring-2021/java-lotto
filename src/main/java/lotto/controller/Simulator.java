@@ -5,6 +5,7 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Simulator {
@@ -13,6 +14,7 @@ public class Simulator {
     private LottoTicket lottoTicket;
     private Lotto lotto;
     private LottoNumber bonusBall;
+    private List<LottoNumber> lottoNumbers;
     private WinningLotto winningLotto;
     private int lottoCount;
     private List<LottoRank> lottoRanks;
@@ -53,9 +55,19 @@ public class Simulator {
 
     private void generateAutoLottoTicket(int lottoCount) {
         for(int i = 0; i < lottoCount; i++) {
-            Lotto lotto = new Lotto();
+            Lotto lotto = new Lotto(generateAutoLottoNumbers());
             lottoTicket.add(lotto);
         }
+    }
+
+    private List<LottoNumber> generateAutoLottoNumbers() {
+        List<LottoNumber> lottoNumberRange = new ArrayList<LottoNumber>();
+        for (int i = LottoNumber.MINIMUM_VALUE; i <= LottoNumber.MAXIMUM_VALUE; i++) {
+            lottoNumberRange.add(new LottoNumber(i));
+        }
+        Collections.shuffle(lottoNumberRange);
+        lottoNumbers = lottoNumberRange.subList(0, 6);
+        return lottoNumbers;
     }
 
     private void inputWinningLottoProcess() {

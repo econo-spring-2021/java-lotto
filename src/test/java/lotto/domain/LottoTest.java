@@ -16,7 +16,8 @@ import static org.junit.jupiter.api.Assertions.*;
 class LottoTest {
     @Test
     void 로또_생성_확인하기() {
-        Lotto lotto = new Lotto();
+        List<LottoNumber> lottoNumbers = Stream.of(1, 2, 3, 4, 5, 6).map(number -> new LottoNumber(number)).collect(Collectors.toList());
+        Lotto lotto = new Lotto(lottoNumbers);
         assertEquals(lotto.getLottoNumbers().size(), Lotto.SIZE_EXCEPT_BONUS_NUMBER);
     }
 

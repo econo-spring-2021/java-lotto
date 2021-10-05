@@ -10,15 +10,6 @@ public class Lotto {
     public static final int SIZE_CONTAINING_BONUS_BALL = 7;
     private List<LottoNumber> lottoNumbers;
 
-    public Lotto() {
-        List<LottoNumber> lottoNumberRange = new ArrayList<LottoNumber>();
-        for (int i = LottoNumber.MINIMUM_VALUE; i <= LottoNumber.MAXIMUM_VALUE; i++) {
-            lottoNumberRange.add(new LottoNumber(i));
-        }
-        Collections.shuffle(lottoNumberRange);
-        lottoNumbers = lottoNumberRange.subList(0, 6);
-    }
-
     public Lotto(List<LottoNumber> lottoNumbers) {
         validateLottoNumberCount(lottoNumbers);
         validateDuplicatedLottoNumber(lottoNumbers);
