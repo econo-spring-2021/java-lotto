@@ -1,12 +1,11 @@
 package lotto.controller;
 
 import lotto.domain.*;
+import lotto.view.Constants;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class Simulator {
     private InputView inputView;
@@ -19,6 +18,7 @@ public class Simulator {
     private int lottoCount;
     private List<LottoRank> lottoRanks;
     private LottoResult lottoResult;
+    Map<LottoRank, Integer> winningStatistics;
 
     public Simulator() {
         inputView = new InputView();
@@ -27,6 +27,7 @@ public class Simulator {
         lottoResult = new LottoResult();
         lottoRanks = new ArrayList<>();
         lottoCount = 0;
+        winningStatistics = new HashMap<>();
     }
 
     public void start() {
@@ -34,12 +35,13 @@ public class Simulator {
         lottoCount = payment.getMoney() / Lotto.PRICE;
         OutputView.printLottoCountMessage(lottoCount);
         generateAutoLottoTicket(lottoCount);
-        OutputView.printLottoTicketMessage(lottoTicket, lottoCount);
+        printLottoTicketProcess(lottoTicket);
         inputWinningLottoProcess();
         inputBonusBallProcess();
         OutputView.printWinningStatistics();
         lottoRanks = lottoTicket.findLottoRanks(winningLotto);
-        OutputView.printResult(lottoResult.show(lottoRanks));
+        winningStatistics = lottoResult.show(lottoRanks);
+        printLottoResultProcess(winningStatistics);
         OutputView.printEarningRate(lottoResult.calculateTotalEarningRate(payment));
     }
 
@@ -89,5 +91,20 @@ public class Simulator {
             OutputView.printErrorMessage(e.getMessage());
             inputBonusBallProcess();
         }
+    }
+
+    private void printLottoTicketProcess(LottoTicket lottoTicket) {
+        lottoTicket.getLottos().forEach((lotto) -> OutputView.printLottoTicketMessage(
+                lotto.getLottoNumbers().get(0).getNumber(),
+                lotto.getLottoNumbers().get(1).getNumber(),
+                lotto.getLottoNumbers().get(2).getNumber(),
+                lotto.getLottoNumbers().get(3).getNumber(),
+                lotto.getLottoNumbers().get(4).getNumber(),
+                lotto.getLottoNumbers().get(5).getNumber()));
+    }
+
+    private void printLottoResultProcess(Map<LottoRank, Integer> winningStatistics) {
+        winningStatistics.forEach((rank, count) ->
+                OutputView.printResult(rank.getMatchCount(),rank.getMoney(),count));
     }
 }

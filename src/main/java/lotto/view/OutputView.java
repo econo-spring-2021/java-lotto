@@ -1,10 +1,5 @@
 package lotto.view;
 
-import lotto.domain.LottoRank;
-import lotto.domain.LottoTicket;
-
-import java.util.Map;
-
 public class OutputView {
     public static void printErrorMessage(String errorMessage) {
         System.out.println(errorMessage);
@@ -18,17 +13,14 @@ public class OutputView {
         System.out.println(String.format(Constants.PURCHASE_NUMBER_PRINT_MESSAGE, lottoCount));
     }
 
-    public static void printLottoTicketMessage(LottoTicket lottoTicket, int lottoCount) {
-        for(int i = 0; i < lottoCount; i++) {
-            System.out.println(String.format(Constants.LOTTO_TICKET_PRINT_MESSAGE,
-                    lottoTicket.getLottos().get(i).getLottoNumbers().get(0).getNumber(),
-                    lottoTicket.getLottos().get(i).getLottoNumbers().get(1).getNumber(),
-                    lottoTicket.getLottos().get(i).getLottoNumbers().get(2).getNumber(),
-                    lottoTicket.getLottos().get(i).getLottoNumbers().get(3).getNumber(),
-                    lottoTicket.getLottos().get(i).getLottoNumbers().get(4).getNumber(),
-                    lottoTicket.getLottos().get(i).getLottoNumbers().get(5).getNumber()
-                    ));
-        }
+    public static void printLottoTicketMessage(int lottoNumber1, int lottoNumber2, int lottoNumber3, int lottoNumber4, int lottoNumber5, int lottoNumber6) {
+        System.out.println(String.format(Constants.LOTTO_TICKET_PRINT_MESSAGE,
+                lottoNumber1,
+                lottoNumber2,
+                lottoNumber3,
+                lottoNumber4,
+                lottoNumber5,
+                lottoNumber6));
     }
 
     public static void inputSixDigitNumbersMessage() {
@@ -44,12 +36,11 @@ public class OutputView {
         System.out.println(Constants.LINE_MADE_BY_HYPHEN_MESSAGE);
     }
 
-    public static void printResult(Map<LottoRank, Integer> winningStatistics) {
-        winningStatistics.forEach((rank, count) ->
+    public static void printResult(int matchCount, int money, int count) {
                 System.out.println(String.format(Constants.THREE_NUMBER_MATCH_MESSAGE,
-                        rank.getMatchCount(),
-                        rank.getMoney(),
-                        count)));
+                        matchCount,
+                        money,
+                        count));
     }
 
     public static void printEarningRate(double earningRate) {
