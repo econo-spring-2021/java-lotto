@@ -12,8 +12,8 @@ public class Simulator {
     private LottoTicket lottoTicket;
     private Lotto lotto;
     private LottoNumber bonusBall;
-    private List<LottoNumber> lottoNumbers;
     private WinningLotto winningLotto;
+    private LottoMachine lottoMachine;
     private int lottoCount;
     private List<LottoRank> lottoRanks;
     private LottoResult lottoResult;
@@ -36,14 +36,14 @@ public class Simulator {
         lottoCount = payment.getMoney() / Lotto.PRICE;
         inputManualLottoCountProcess();
         autoLottoCount = lottoCount - manualLottoCount;
-        inputManualLottoProcess(manualLottoCount);
-        generateAutoLottoTicket(autoLottoCount);
+        OutputView.inputManualLottoMessage();
+        lottoMachine = new LottoMachine(autoLottoCount, manualLottoCount, makeManualLottos(manualLottoCount));
         OutputView.printLottoCountMessage(manualLottoCount, autoLottoCount);
-        printLottoTicketProcess(lottoTicket);
+        printLottoTicketProcess(lottoMachine.getLottoTicket());
         inputWinningLottoProcess();
         inputBonusBallProcess();
         OutputView.printWinningStatistics();
-        lottoRanks = lottoTicket.findLottoRanks(winningLotto);
+        lottoRanks = lottoMachine.getLottoTicket().findLottoRanks(winningLotto);
         winningStatistics = lottoResult.show(lottoRanks);
         printLottoResultProcess(winningStatistics);
         OutputView.printEarningRate(lottoResult.calculateTotalEarningRate(payment));
@@ -64,11 +64,12 @@ public class Simulator {
         manualLottoCount = inputView.inputManualLottoCount();
     }
 
-    private void inputManualLottoProcess(int manualLottoCount) {
-        OutputView.inputManualLottoMessage();
+    private List<Lotto> makeManualLottos(int manualLottoCount) {
+        List<Lotto> manualLottos = new ArrayList<>();
         for(int i = 0; i < manualLottoCount; i++) {
-            lottoTicket.add(generateLotto(inputView.inputLottoNumbers()));
+            manualLottos.add(generateLotto(inputView.inputLottoNumbers()));
         }
+        return manualLottos;
     }
 
     private Lotto generateLotto(List<LottoNumber> lottoNumbers) {
@@ -78,23 +79,6 @@ public class Simulator {
             OutputView.printErrorMessage(e.getMessage());
             return generateLotto(inputView.inputLottoNumbers());
         }
-    }
-
-    private void generateAutoLottoTicket(int lottoCount) {
-        for(int i = 0; i < lottoCount; i++) {
-            Lotto lotto = new Lotto(generateAutoLottoNumbers());
-            lottoTicket.add(lotto);
-        }
-    }
-
-    private List<LottoNumber> generateAutoLottoNumbers() {
-        List<LottoNumber> lottoNumberRange = new ArrayList<LottoNumber>();
-        for (int i = LottoNumber.MINIMUM_VALUE; i <= LottoNumber.MAXIMUM_VALUE; i++) {
-            lottoNumberRange.add(new LottoNumber(i));
-        }
-        Collections.shuffle(lottoNumberRange);
-        lottoNumbers = lottoNumberRange.subList(0, 6);
-        return lottoNumbers;
     }
 
     private void inputWinningLottoProcess() {
