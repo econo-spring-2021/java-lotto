@@ -2,6 +2,7 @@ package lotto.view;
 
 import lotto.controller.InvalidInputLottoBallsException;
 import lotto.controller.InvalidInputMoneyException;
+import lotto.controller.InvalidInputLottoBallsException;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -27,7 +28,7 @@ public class InputView {
         return purchasedMoney / LOTTO_TICKET_PRICE;
     }
 
-    public static int manualLottoCountsInput() {
+    public static int manualLottoCountsInput(){
         System.out.println(MANUAL_PURCHASE_LOTTO_COUNT_MESSAGE);
         int purchaseCount = input.nextInt();
         String buffer = input.nextLine();
@@ -47,7 +48,7 @@ public class InputView {
         String winningBallString = input.nextLine().replaceAll(" ", "").trim();
         String[] winningBallArray = separateWinningBall(winningBallString);
 
-        if (winningBallArray.length != 6) {
+        if(winningBallArray.length !=6 ) {
             throw new InvalidInputLottoBallsException();
         }
         for (int i = 0; i < 6; i++) {

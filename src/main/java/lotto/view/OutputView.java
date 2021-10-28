@@ -5,7 +5,7 @@ import java.util.List;
 public class OutputView {
     private static final String MANUAL_LOTTO_MESSAGE = "수동으로 ";
     private static final String LOTTO_UNIT = "장, ";
-    private static final String AUTO_LOTTO_MESSAGE = "자동으로 ";
+    private static final String AUTO_LOTTO_MESSAGE ="자동으로 ";
     private static final String PURCHASED_LOTTO_NUMBER_MESSAGE = "장을 구매했습니다.";
     private static final String WIN_STATISTICS_MESSAGE = "당첨 통계";
     private static final String WIN_STATISTICS_SEPARATOR = "---------";
@@ -19,8 +19,8 @@ public class OutputView {
 
     public static void numberOfLottoShow(int autoLottoCount, int manualLottoCount) {
         System.out.println(MANUAL_LOTTO_MESSAGE + autoLottoCount + LOTTO_UNIT + AUTO_LOTTO_MESSAGE + manualLottoCount + PURCHASED_LOTTO_NUMBER_MESSAGE);
-    }
 
+    }
     public static void resultSignalShow() {
         System.out.println();
         System.out.println(WIN_STATISTICS_MESSAGE);
