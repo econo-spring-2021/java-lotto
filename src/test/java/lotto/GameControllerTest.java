@@ -1,15 +1,10 @@
 package lotto;
 
-import lotto.controller.GameController;
 import lotto.domain.LottoResult;
-import lotto.domain.LottoTicket;
-import lotto.domain.WinnerTicket;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -25,7 +20,7 @@ class GameControllerTest {
         resultStatistics.put(LottoResult.SIX_WIN, 0);
         resultStatistics.put(LottoResult.LOSE, 0);
 
-        int money =0;
+        int money = 0;
         for (LottoResult lottoResult : LottoResult.values()) {
             money += lottoResult.getMoney() * resultStatistics.get(lottoResult);
         }

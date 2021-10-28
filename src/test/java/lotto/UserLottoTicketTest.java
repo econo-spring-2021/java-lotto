@@ -1,6 +1,5 @@
 package lotto;
 
-import lotto.domain.LottoTicket;
 import lotto.domain.UserLottoTicket;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -16,9 +15,8 @@ class UserLottoTicketTest {
         UserLottoTicket userLottoTicket = new UserLottoTicket();
 
         //when
-        for(int i =0; i<10; i++)
-            userLottoTicket.addLottoTicket();
-
+        for (int i = 0; i < 10; i++)
+            userLottoTicket.addAutoLottoTicket();
         //then
         assertThat(userLottoTicket.getPurchasedLotto().size()).isEqualTo(10);
     }

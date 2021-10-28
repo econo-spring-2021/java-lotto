@@ -2,7 +2,6 @@ package lotto;
 
 import lotto.domain.LottoFactory;
 import lotto.domain.LottoTicket;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -10,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 class LottoTicketTest {
     private LottoTicket lottoTicket;
@@ -57,7 +55,7 @@ class LottoTicketTest {
 
     @Test
     @DisplayName("로또 번호 중복될 때 예외 발생하는지")
-    public void DuplicatedLottoNumberExceptionTest(){
+    public void DuplicatedLottoNumberExceptionTest() {
         //given
         List<Integer> lottoNumbers = new ArrayList<>();
         lottoNumbers.add(1);
@@ -80,7 +78,7 @@ class LottoTicketTest {
 
     @Test
     @DisplayName("로또 번호 범위 벗어날 때 예외 발생하는지")
-    public void InvalidRangeLottoNumberExceptionTest(){
+    public void InvalidRangeLottoNumberExceptionTest() {
         //given
         List<Integer> lottoNumbers = new ArrayList<>();
         lottoNumbers.add(1);

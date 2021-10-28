@@ -17,32 +17,62 @@ public class GameController {
     WinnerTicket winnerTicket;
 
     public void lottoPurchase() {
-        int lottoCount = 0;
+        int lottoCount = 0, autoLottoCount = 0, manualLottoCount = 0;
         try {
             lottoCount = InputView.moneyInput();
         } catch (InvalidInputMoneyException e) {
             System.out.println(e.getMessage());
             lottoPurchase();
         }
-        if (lottoCount > 0)
-            OutputView.numberOfLottoShow(lottoCount);
-        for (int i = 0; i < lottoCount; i++) {
-            userLottoTicket.addLottoTicket();
+        manualLottoCount = InputView.manualLottoCountsInput();
+        if (manualLottoCount > 0) {
+            manualLottoPurchase(manualLottoCount);
+        }
+        autoLottoCount = lottoCount - manualLottoCount;
+        for (int i = 0; i < autoLottoCount; i++) {
+            userLottoTicket.addAutoLottoTicket();
+        }
+        purchaseLottoShow(manualLottoCount, autoLottoCount);
+    }
+
+    public LottoTicket manualLottoGenerate() {
+        LottoTicket lottoTicket = null;
+        try {
+            lottoTicket = new LottoTicket(InputView.lottoNumberInput());
+        } catch (InvalidInputLottoBallsException e) {
+            System.out.println(e.getMessage());
+            manualLottoGenerate();
+        }
+        return lottoTicket;
+    }
+
+    public void manualLottoPurchase(int manualLottoCount) {
+        InputView.manualLottoInputMessageShow();
+        for (int i = 0; i < manualLottoCount; i++) {
+            userLottoTicket.addManualLottoTicket(manualLottoGenerate());
+        }
+    }
+
+    public void purchaseLottoShow(int manualLottoCount, int AutoLottoCount) {
+        int totalLottoCount = userLottoTicket.getPurchasedLotto().size();
+        OutputView.numberOfLottoShow(manualLottoCount, AutoLottoCount);
+        for (int i = 0; i < totalLottoCount; i++) {
             OutputView.lottoTicketNumberShow(userLottoTicket.getPurchasedLotto(i));
         }
     }
 
     public void winningBallInput() {
         try {
-            winnerTicket = new WinnerTicket(new LottoTicket(InputView.wonNumberInput()), InputView.bonusBallInput());
-        } catch (InvalidInputWonBallsException e) {
+            InputView.wonLottoInputMessageShow();
+            winnerTicket = new WinnerTicket(new LottoTicket(InputView.lottoNumberInput()), InputView.bonusBallInput());
+        } catch (InvalidInputLottoBallsException e) {
             System.out.println(e.getMessage());
             winningBallInput();
         }
     }
 
     public void resultStatisticsInit(LinkedHashMap<LottoResult, Integer> resultStatistics) {
-        for(LottoResult result : LottoResult.values())
+        for (LottoResult result : LottoResult.values())
             resultStatistics.put(result, 0);
     }
 
@@ -63,17 +93,17 @@ public class GameController {
         return resultStatistics;
     }
 
-    public int lottoPrizeCalculate(LinkedHashMap<LottoResult,Integer> resultStatistics){
-        int money =0;
+    public int lottoPrizeCalculate(LinkedHashMap<LottoResult, Integer> resultStatistics) {
+        int money = 0;
         for (LottoResult lottoResult : LottoResult.values()) {
             money += lottoResult.getMoney() * resultStatistics.get(lottoResult);
         }
         return money;
     }
 
-    public void lottoBenefitShow(int income){
+    public void lottoBenefitShow(int income) {
         int money = userLottoTicket.getPurchasedLotto().size() * 1000;
-        double benefit = (double)income / money;
+        double benefit = (double) income / money;
         OutputView.benefitShow(String.format("%.2f", benefit));
     }
 }

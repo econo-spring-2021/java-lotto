@@ -47,10 +47,10 @@ class WinnerTicketTest {
         LottoTicket lottoTicket = new LottoTicket(userLotto);
 
         List<Integer> winnerLotto = new ArrayList<>();
-        for(int i =7; i<=12; i++)
+        for (int i = 7; i <= 12; i++)
             winnerLotto.add(i);
         LottoTicket tempWinnerTicket = new LottoTicket(winnerLotto);
-        WinnerTicket winnerTicket = new WinnerTicket(tempWinnerTicket,45);
+        WinnerTicket winnerTicket = new WinnerTicket(tempWinnerTicket, 45);
 
         //when
         int coincidenceCounts = winnerTicket.lottoComparing(lottoTicket);

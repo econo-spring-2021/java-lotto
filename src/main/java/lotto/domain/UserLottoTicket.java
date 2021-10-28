@@ -7,8 +7,12 @@ import java.util.List;
 public class UserLottoTicket {
     private List<LottoTicket> purchasedLotto = new ArrayList<>();
 
-    public void addLottoTicket(){
+    public void addAutoLottoTicket() {
         purchasedLotto.add(LottoFactory.LottoAutoGenerate());
+    }
+
+    public void addManualLottoTicket(LottoTicket lottoTicket) {
+        purchasedLotto.add(lottoTicket);
     }
 
     public List<Integer> getPurchasedLotto(int index) {

@@ -13,21 +13,21 @@ public class LottoTicket {
         return bonusFlag;
     }
 
-    public LottoTicket(List<Integer> lottoNumbers){
+    public LottoTicket(List<Integer> lottoNumbers) {
         validateLottoNumbers(lottoNumbers);
         validateDuplicatedLottoNumbers(lottoNumbers);
-        this.lottoNumbers =lottoNumbers;
+        this.lottoNumbers = lottoNumbers;
     }
 
     public List<Integer> getLottoNumbers() {
         return lottoNumbers;
     }
 
-    public void lottoWinIncrease(){
+    public void lottoWinIncrease() {
         winCount++;
     }
 
-    public void lottoBonusCoincedence(){
+    public void lottoBonusCoincedence() {
         bonusFlag = true;
     }
 
@@ -35,15 +35,15 @@ public class LottoTicket {
         return winCount;
     }
 
-    public void validateLottoNumbers(List<Integer> lottoNumbers){
-        for(int lottoNumber : lottoNumbers){
-            if(lottoNumber<1 || lottoNumber >45) throw new IllegalArgumentException("로또 번호는 1부터 45까지 존재합니다");
+    public void validateLottoNumbers(List<Integer> lottoNumbers) {
+        for (int lottoNumber : lottoNumbers) {
+            if (lottoNumber < 1 || lottoNumber > 45) throw new IllegalArgumentException("로또 번호는 1부터 45까지 존재합니다");
         }
     }
 
-    public void validateDuplicatedLottoNumbers(List<Integer> lottoNumbers){
+    public void validateDuplicatedLottoNumbers(List<Integer> lottoNumbers) {
         Set<Integer> distincLottoNumbers = new HashSet<>(lottoNumbers);
-        if(distincLottoNumbers.size() != lottoNumbers.size())
+        if (distincLottoNumbers.size() != lottoNumbers.size())
             throw new IllegalArgumentException("로또 번호는 중복될 수 없습니다.");
     }
 }
